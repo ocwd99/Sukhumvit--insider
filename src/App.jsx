@@ -408,7 +408,7 @@ export default function SukhumvitInsider() {
             <div>
               <div className="flex justify-between items-center mb-4"><h2 className="text-xl font-bold">{t.admin.venues}</h2><button onClick={() => { setNewVenue({ name: "", drink_price: 0, rating: 0, risk_level: "Low", location: "", category: "A", description: "", decoration_level: "普通", friendliness: "中", google_maps_url: "" }); setShowAddVenue(true); }} className="px-4 py-2 bg-purple-600 rounded flex items-center space-x-2"><Plus className="w-4 h-4" /><span>{t.admin.addVenue}</span></button></div>
               <div className="grid gap-4">
-                {venues.map(v => (
+                {sortedVenues.map(v => (
                   <div key={v.id} className="bg-[#1a1a1a] p-4 rounded-xl border border-gray-800">
                     <div className="flex justify-between items-start">
                       <div className="flex-1">
