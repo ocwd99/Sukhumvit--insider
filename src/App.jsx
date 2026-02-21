@@ -863,6 +863,32 @@ export default function SukhumvitInsider() {
                 </a>
               )}
               
+              {/* Reviews Section */}
+              <div className="border-t border-gray-800 pt-4 mt-4">
+                <h4 className="text-sm font-bold text-gray-400 mb-3 flex items-center space-x-2">
+                  <MessageSquare className="w-4 h-4" />
+                  <span>用戶評價</span>
+                  <span className="text-amber-400">({selectedVenue.rating} ★)</span>
+                </h4>
+                <div className="space-y-3">
+                  <div className="bg-[#0a0a0a] p-3 rounded-lg">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-medium">匿名用戶</span>
+                      <div className="flex text-amber-400 text-xs">{'★'.repeat(5)}</div>
+                    </div>
+                    <p className="text-xs text-gray-400">氣氛很好，服務人員非常親切！</p>
+                  </div>
+                  <div className="bg-[#0a0a0a] p-3 rounded-lg">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="text-sm font-medium">VIP會員</span>
+                      <div className="flex text-amber-400 text-xs">{'★'.repeat(4)}</div>
+                    </div>
+                    <p className="text-xs text-gray-400">整體不錯，但價位偏高...</p>
+                  </div>
+                </div>
+                {user && <button className="w-full mt-3 py-2 border border-purple-500/30 text-purple-400 rounded-lg text-sm hover:bg-purple-500/10 transition">撰寫評價</button>}
+              </div>
+              
               {(venuePackages[selectedVenue.id] || []).length > 0 && (
                 <div className="bg-[#0a0a0a] p-3 rounded-lg">
                   <div className="text-xs text-gray-500 mb-2">{t.dashboard.packages2}</div>
