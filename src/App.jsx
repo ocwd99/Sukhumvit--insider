@@ -41,7 +41,7 @@ const translations = {
     membership: { title: 'Membership Tiers', subtitle: 'Choose your intelligence level', popular: 'MOST POPULAR', getStarted: 'Get Started', current: 'Current Plan', selectTier: 'Select Plan', features: 'Features', contactUs: 'Contact us to purchase' },
     emergency: { title: 'Emergency Request', success: 'Request submitted! We will contact you soon.' },
     venues: { title: 'All Venues', filter: 'Filter by category', all: 'All', price: 'Price', rating: 'Rating', risk: 'Risk' },
-    admin: { title: 'Admin Panel', dashboard: 'Dashboard', venues: 'Manage Venues', users: 'Users', receipts: 'Receipts', approvals: 'Approvals', editVenue: 'Edit Venue', addVenue: 'Add Venue', save: 'Save', cancel: 'Cancel', approve: 'Approve', reject: 'Reject', totalUsers: 'Total Users', totalVenues: 'Total Venues', pendingReceipts: 'Pending Receipts', approvedReceipts: 'Approved', packages: 'Packages', addPackage: 'Add Package', packageName: 'Package Name', duration: 'Duration (min)', price: 'Price (THB)', description: 'Description', notes: 'Admin Notes', noPackages: 'No packages yet', noNotes: 'No notes yet', pin: 'Pin to Top', pinned: 'Pinned', unpin: 'Unpin' },
+    admin: { title: 'Admin Panel', dashboard: 'Dashboard', venues: 'Manage Venues', users: 'Users', receipts: 'Receipts', approvals: 'Approvals', editVenue: 'Edit Venue', addVenue: 'Add Venue', save: 'Save', cancel: 'Cancel', approve: 'Approve', reject: 'Reject', totalUsers: 'Total Users', totalVenues: 'Total Venues', pendingReceipts: 'Pending Receipts', approvedReceipts: 'Approved', packages: 'Packages', addPackage: 'Add Package', packageName: 'Package Name', duration: 'Duration (min)', price: 'Price (THB)', description: 'Description', notes: 'Admin Notes', noPackages: 'No packages yet', noNotes: 'No notes yet', pin: 'Pin to Top', Pinned: 'Pinned', unpin: 'Unpin' },
     footer: { privacy: 'Privacy', terms: 'Terms', contact: 'Contact', rights: 'All rights reserved.' },
     riskMap: { title: 'Bangkok Nightlife Risk Map', subtitle: 'Real-time venue risk assessment', low: 'Low Risk', medium: 'Medium Risk', high: 'High Risk', legend: 'Risk Legend', viewDetails: 'View Details' },
     privacy: { title: 'Privacy Policy', lastUpdated: 'Last updated: February 2026', content: 'Your privacy is important to us. We collect minimal data necessary for providing our services. We do not share your personal information with third parties without your consent. All data is encrypted and stored securely.' },
@@ -57,7 +57,7 @@ const translations = {
     membership: { title: '會員方案', subtitle: '選擇你的情報級別', popular: '熱門', getStarted: '立即開始', current: '目前方案', selectTier: '選擇方案', features: '功能特色', contactUs: '聯繫我們購買' },
     emergency: { title: '緊急請求', success: '請求已提交！我們會儘快聯繫你。' },
     venues: { title: '全部場地', filter: '按類型篩選', all: '全部', price: '價格', rating: '評分', risk: '風險' },
-    admin: { title: '管理後台', dashboard: '儀表板', venues: '管理店家', users: '用戶', receipts: '收據', approvals: '審核', editVenue: '編輯店家', addVenue: '新增店家', save: '儲存', cancel: '取消', approve: '通過', reject: '拒絕', totalUsers: '總用戶', totalVenues: '總店家', pendingReceipts: '待審核', approvedReceipts: '已通過', packages: '套餐', addPackage: '新增套餐', packageName: '套餐名稱', duration: '時間 (分鐘)', price: '價格 (THB)', description: '說明', notes: '管理員筆記', noPackages: '尚無套餐', noNotes: '尚無筆記', pin: '置頂', pinned: '已置頂', unpin: '取消置頂' },
+    admin: { title: '管理後台', dashboard: '儀表板', venues: '管理店家', users: '用戶', receipts: '收據', approvals: '審核', editVenue: '編輯店家', addVenue: '新增店家', save: '儲存', cancel: '取消', approve: '通過', reject: '拒絕', totalUsers: '總用戶', totalVenues: '總店家', pendingReceipts: '待審核', approvedReceipts: '已通過', packages: '套餐', addPackage: '新增套餐', packageName: '套餐名稱', duration: '時間 (分鐘)', price: '價格 (THB)', description: '說明', notes: '管理員筆記', noPackages: '尚無套餐', noNotes: '尚無筆記', pin: '置頂', Pinned: '已置頂', unpin: '取消置頂' },
     footer: { privacy: '隱私', terms: '條款', contact: '聯絡', rights: '版權所有。' },
     riskMap: { title: '曼谷夜生活風險地圖', subtitle: '即時場地風險評估', low: '低風險', medium: '中等風險', high: '高風險', legend: '風險圖例', viewDetails: '查看詳情' },
     privacy: { title: '隱私政策', lastUpdated: '最後更新：2026年2月', content: '您的隱私對我們很重要。我們僅收集提供服務所需的最低限度資料。我們不會在未經您同意的情況下與第三方分享您的個人資訊。所有資料都會加密並安全儲存。' },
@@ -73,7 +73,7 @@ const translations = {
     membership: { title: 'メンバーシップティア', subtitle: 'インテリジェンスレベルを選択', popular: '人気', getStarted: '始める', current: '現在のプラン', selectTier: 'プランを選択', features: '機能', contactUs: 'お問い合わせで購入' },
     emergency: { title: '緊急リクエスト', success: 'リクエスト送信完了！まもなくご連絡します。' },
     venues: { title: '全会場', filter: 'カテゴリでフィルター', all: 'すべて', price: '価格', rating: '評価', risk: 'リスク' },
-    admin: { title: '管理パネル', dashboard: 'ダッシュボード', venues: '会場管理', users: 'ユーザー', receipts: 'レシート', approvals: '承認', editVenue: '会場を編集', addVenue: '会場を追加', save: '保存', cancel: 'キャンセル', approve: '承認', reject: '否決', totalUsers: '総ユーザー', totalVenues: '総会場', pendingReceipts: '承認待ち', approvedReceipts: '承認済み', packages: 'パッケージ', addPackage: 'パッケージを追加', packageName: 'パッケージ名', duration: '時間 (分)', price: '価格 (THB)', description: '説明', notes: '管理者メモ', noPackages: 'パッケージなし', noNotes: 'メモなし', pin: 'ピン留め', pinned: 'ピン留め済み', unpin: 'ピン解除' },
+    admin: { title: '管理パネル', dashboard: 'ダッシュボード', venues: '会場管理', users: 'ユーザー', receipts: 'レシート', approvals: '承認', editVenue: '会場を編集', addVenue: '会場を追加', save: '保存', cancel: 'キャンセル', approve: '承認', reject: '否決', totalUsers: '総ユーザー', totalVenues: '総会場', pendingReceipts: '承認待ち', approvedReceipts: '承認済み', packages: 'パッケージ', addPackage: 'パッケージを追加', packageName: 'パッケージ名', duration: '時間 (分)', price: '価格 (THB)', description: '説明', notes: '管理者メモ', noPackages: 'パッケージなし', noNotes: 'メモなし', pin: 'ピン留め', Pinned: 'ピン留め済み', unpin: 'ピン解除' },
     footer: { privacy: 'プライバシー', terms: '利用規約', contact: '連絡先', rights: '全著作権所有。' },
     riskMap: { title: 'バンコク夜リスクマップ', subtitle: 'リアルタイム会場リスク評価', low: '低リスク', medium: '中リスク', high: '高リスク', legend: 'リスク凡例', viewDetails: '詳細を見る' },
     privacy: { title: 'プライバシーポリシー', lastUpdated: '最終更新：2026年2月', content: 'プライバシーは重要です。必要な最小限のデータのみを収集します。第三者に情報を共有することは一切ありません。' },
@@ -322,7 +322,7 @@ export default function SukhumvitInsider() {
     if (editingVenue?.id) {
       await supabase.from('venues').update({ ...editingVenue, updated_at: new Date().toISOString() }).eq('id', editingVenue.id);
     } else {
-      await supabase.from('venues').insert({ ...newVenue, pinned: false, created_at: new Date().toISOString(), updated_at: new Date().toISOString() });
+      await supabase.from('venues').insert({ ...newVenue, Pinned: false, created_at: new Date().toISOString(), updated_at: new Date().toISOString() });
     }
     setEditingVenue(null);
     setNewVenue({ name: '', drink_price: 0, rating: 0, risk_level: 'Low', location: '', category: 'A', description: '', decoration_level: '普通', friendliness: '中', google_maps_url: '' });
@@ -337,8 +337,8 @@ export default function SukhumvitInsider() {
   }
 
   async function handlePinVenue(venue) {
-    const newPinned = !venue.pinned;
-    await supabase.from('venues').update({ pinned: newPinned, updated_at: new Date().toISOString() }).eq('id', venue.id);
+    const newPinned = !venue.Pinned;
+    await supabase.from('venues').update({ Pinned: newPinned, updated_at: new Date().toISOString() }).eq('id', venue.id);
     fetchVenues();
   }
 
@@ -373,8 +373,8 @@ export default function SukhumvitInsider() {
 
   // Sort venues: pinned first, then by updated_at (recently edited), then by drink_price
   const sortedVenues = [...venues].sort((a, b) => {
-    if (a.pinned && !b.pinned) return -1;
-    if (!a.pinned && b.pinned) return 1;
+    if (a.Pinned && !b.Pinned) return -1;
+    if (!a.Pinned && b.Pinned) return 1;
     const dateA = a.updated_at ? new Date(a.updated_at) : new Date(0);
     const dateB = b.updated_at ? new Date(b.updated_at) : new Date(0);
     return dateB - dateA;
@@ -428,7 +428,7 @@ export default function SukhumvitInsider() {
                         )}
                       </div>
                       <div className="flex space-x-2">
-                        <button onClick={() => handlePinVenue(v)} className={`p-2 rounded ${v.pinned ? 'bg-amber-500/20 text-amber-500' : 'text-gray-400 hover:bg-amber-500/10 hover:text-amber-500'}`} title={v.pinned ? t.admin.unpin : t.admin.pin}><Star className="w-4 h-4" /></button>
+                        <button onClick={() => handlePinVenue(v)} className={`p-2 rounded ${v.Pinned ? 'bg-amber-500/20 text-amber-500' : 'text-gray-400 hover:bg-amber-500/10 hover:text-amber-500'}`} title={v.Pinned ? t.admin.unpin : t.admin.pin}><Star className="w-4 h-4" /></button>
                         <button onClick={() => { setSelectedVenueForPackage(v.id); setShowPackageModal(true); }} className="p-2 text-green-400 hover:bg-green-400/10 rounded" title="Add Package"><Plus className="w-4 h-4" /></button>
                         <button onClick={() => { setEditingVenue(v); setShowAddVenue(false); }} className="p-2 text-blue-400 hover:bg-blue-400/10 rounded"><Edit className="w-4 h-4" /></button>
                         <button onClick={() => handleDeleteVenue(v.id)} className="p-2 text-red-400 hover:bg-red-400/10 rounded"><Trash2 className="w-4 h-4" /></button>
