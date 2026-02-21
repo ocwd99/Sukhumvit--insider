@@ -37,15 +37,15 @@ const translations = {
     hero: { trustActive: 'Trust Protocol Active', title: "Navigate Bangkok's Neon Nights with Absolute Certainty", subtitle: 'The premier intelligence platform for premium travelers.', cta: 'Start Intelligence Trial', cta2: 'View Risk Map', verified: 'Verified Members', reports: 'Field Reports', satisfaction: 'Satisfaction Rate' },
     auth: { login: 'Login', signup: 'Sign Up', email: 'Email', password: 'Password', confirmPassword: 'Confirm Password', logout: 'Logout', noAccount: "Don't have an account?", hasAccount: 'Already have an account?', welcome: 'Welcome back!', selectPreferences: 'Select your preferences (multiple)' },
     dashboard: { title: 'Intelligence Dashboard', priceIndex: 'Bangkok Venue Price Index', updated: 'Updated: Live', trustProtocol: 'Trust Protocol Status', venueVerify: 'Venue Verification', priceSync: 'Price Index Sync', fieldAgent: 'Field Agent Network', emergency: '72-Hour Health Concierge', emergencyDesc: 'Urgent medical assistance, hospital navigation, and emergency translation services.', activate: 'Activate Emergency Protocol', viewAll: 'View All Venues', yourCredits: 'Your Credits', decoration: 'Decoration', friendliness: 'Friendliness', packages: 'Packages' },
-    gacha: { title: 'The Siam Casino', subtitle: 'Upload payment proof → Get credits → Spin for rewards', spin: 'SPIN NOW', spinning: 'Spinning...', rewardPool: 'Reward Pool', uploadProof: 'Upload Payment Proof', uploadSuccess: 'Upload successful! Waiting for approval.', selectVenue: 'Select Venue', enterAmount: 'Amount (THB)', paymentType: 'Payment Type', receipt: 'Receipt', transfer: 'Transfer', card: 'Credit Card', pendingApproval: 'Pending approval', approved: 'Approved', rejected: 'Rejected', mySubmissions: 'My Submissions', noSubmissions: 'No submissions yet', uploadImage: 'Upload Image', selected: 'Selected' },
+    gacha: { title: 'The Sukhumvit Casino', subtitle: 'Upload payment proof → Get credits → Spin for rewards', spin: 'SPIN NOW', spinning: 'Spinning...', rewardPool: 'Reward Pool', uploadProof: 'Upload Payment Proof', uploadSuccess: 'Upload successful! Waiting for approval.', selectVenue: 'Select Venue', enterAmount: 'Amount (THB)', paymentType: 'Payment Type', receipt: 'Receipt', transfer: 'Transfer', card: 'Credit Card', pendingApproval: 'Pending approval', approved: 'Approved', rejected: 'Rejected', mySubmissions: 'My Submissions', noSubmissions: 'No submissions yet', uploadImage: 'Upload Image', selected: 'Selected' },
     membership: { title: 'Membership Tiers', subtitle: 'Choose your intelligence level', popular: 'MOST POPULAR', getStarted: 'Get Started', current: 'Current Plan', selectTier: 'Select Plan', features: 'Features', contactUs: 'Contact us to purchase' },
     emergency: { title: 'Emergency Request', success: 'Request submitted! We will contact you soon.' },
     venues: { title: 'All Venues', filter: 'Filter by category', all: 'All', price: 'Price', rating: 'Rating', risk: 'Risk' },
-    admin: { title: 'Admin Panel', dashboard: 'Dashboard', venues: 'Manage Venues', users: 'Users', receipts: 'Receipts', approvals: 'Approvals', editVenue: 'Edit Venue', addVenue: 'Add Venue', save: 'Save', cancel: 'Cancel', approve: 'Approve', reject: 'Reject', totalUsers: 'Total Users', totalVenues: 'Total Venues', pendingReceipts: 'Pending Receipts', approvedReceipts: 'Approved', packages: 'Packages', addPackage: 'Add Package', packageName: 'Package Name', duration: 'Duration (min)', price: 'Price (THB)', description: 'Description', notes: 'Admin Notes', noPackages: 'No packages yet', noNotes: 'No notes yet' },
+    admin: { title: 'Admin Panel', dashboard: 'Dashboard', venues: 'Manage Venues', users: 'Users', receipts: 'Receipts', approvals: 'Approvals', editVenue: 'Edit Venue', addVenue: 'Add Venue', save: 'Save', cancel: 'Cancel', approve: 'Approve', reject: 'Reject', totalUsers: 'Total Users', totalVenues: 'Total Venues', pendingReceipts: 'Pending Receipts', approvedReceipts: 'Approved', packages: 'Packages', addPackage: 'Add Package', packageName: 'Package Name', duration: 'Duration (min)', price: 'Price (THB)', description: 'Description', notes: 'Admin Notes', noPackages: 'No packages yet', noNotes: 'No notes yet', pin: 'Pin to Top', pinned: 'Pinned', unpin: 'Unpin' },
     footer: { privacy: 'Privacy', terms: 'Terms', contact: 'Contact', rights: 'All rights reserved.' },
     riskMap: { title: 'Bangkok Nightlife Risk Map', subtitle: 'Real-time venue risk assessment', low: 'Low Risk', medium: 'Medium Risk', high: 'High Risk', legend: 'Risk Legend', viewDetails: 'View Details' },
     privacy: { title: 'Privacy Policy', lastUpdated: 'Last updated: February 2026', content: 'Your privacy is important to us. We collect minimal data necessary for providing our services. We do not share your personal information with third parties without your consent. All data is encrypted and stored securely.' },
-    terms: { title: 'Terms of Service', lastUpdated: 'Last updated: February 2026', content: 'By using Siam Insider, you agree to our terms. Our service provides nightlife information for educational and entertainment purposes. Users must be of legal age in their country of residence.' },
+    terms: { title: 'Terms of Service', lastUpdated: 'Last updated: February 2026', content: 'By using Sukhumvit Insider, you agree to our terms. Our service provides nightlife information for educational and entertainment purposes. Users must be of legal age in their country of residence.' },
     contact: { title: 'Contact Us', email: 'Email', phone: 'Phone', website: 'Website', responseTime: 'We typically respond within 24 hours.' }
   },
   zh: {
@@ -57,11 +57,11 @@ const translations = {
     membership: { title: '會員方案', subtitle: '選擇你的情報級別', popular: '熱門', getStarted: '立即開始', current: '目前方案', selectTier: '選擇方案', features: '功能特色', contactUs: '聯繫我們購買' },
     emergency: { title: '緊急請求', success: '請求已提交！我們會儘快聯繫你。' },
     venues: { title: '全部場地', filter: '按類型篩選', all: '全部', price: '價格', rating: '評分', risk: '風險' },
-    admin: { title: '管理後台', dashboard: '儀表板', venues: '管理店家', users: '用戶', receipts: '收據', approvals: '審核', editVenue: '編輯店家', addVenue: '新增店家', save: '儲存', cancel: '取消', approve: '通過', reject: '拒絕', totalUsers: '總用戶', totalVenues: '總店家', pendingReceipts: '待審核', approvedReceipts: '已通過', packages: '套餐', addPackage: '新增套餐', packageName: '套餐名稱', duration: '時間 (分鐘)', price: '價格 (THB)', description: '說明', notes: '管理員筆記', noPackages: '尚無套餐', noNotes: '尚無筆記' },
+    admin: { title: '管理後台', dashboard: '儀表板', venues: '管理店家', users: '用戶', receipts: '收據', approvals: '審核', editVenue: '編輯店家', addVenue: '新增店家', save: '儲存', cancel: '取消', approve: '通過', reject: '拒絕', totalUsers: '總用戶', totalVenues: '總店家', pendingReceipts: '待審核', approvedReceipts: '已通過', packages: '套餐', addPackage: '新增套餐', packageName: '套餐名稱', duration: '時間 (分鐘)', price: '價格 (THB)', description: '說明', notes: '管理員筆記', noPackages: '尚無套餐', noNotes: '尚無筆記', pin: '置頂', pinned: '已置頂', unpin: '取消置頂' },
     footer: { privacy: '隱私', terms: '條款', contact: '聯絡', rights: '版權所有。' },
     riskMap: { title: '曼谷夜生活風險地圖', subtitle: '即時場地風險評估', low: '低風險', medium: '中等風險', high: '高風險', legend: '風險圖例', viewDetails: '查看詳情' },
     privacy: { title: '隱私政策', lastUpdated: '最後更新：2026年2月', content: '您的隱私對我們很重要。我們僅收集提供服務所需的最低限度資料。我們不會在未經您同意的情況下與第三方分享您的個人資訊。所有資料都會加密並安全儲存。' },
-    terms: { title: '服務條款', lastUpdated: '最後更新：2026年2月', content: '使用 Siam Insider 即表示您同意我們的條款。我們的服務提供夜生活資訊僅供教育和娛樂目的。用戶必須是其居住國家的法定年齡。' },
+    terms: { title: '服務條款', lastUpdated: '最後更新：2026年2月', content: '使用 Sukhumvit Insider 即表示您同意我們的條款。我們的服務提供夜生活資訊僅供教育和娛樂目的。用戶必須是其居住國家的法定年齡。' },
     contact: { title: '聯繫我們', email: '電子郵件', phone: '電話', website: '網站', responseTime: '我們通常會在 24 小時內回覆。' }
   },
   ja: {
@@ -73,11 +73,11 @@ const translations = {
     membership: { title: 'メンバーシップティア', subtitle: 'インテリジェンスレベルを選択', popular: '人気', getStarted: '始める', current: '現在のプラン', selectTier: 'プランを選択', features: '機能', contactUs: 'お問い合わせで購入' },
     emergency: { title: '緊急リクエスト', success: 'リクエスト送信完了！まもなくご連絡します。' },
     venues: { title: '全会場', filter: 'カテゴリでフィルター', all: 'すべて', price: '価格', rating: '評価', risk: 'リスク' },
-    admin: { title: '管理パネル', dashboard: 'ダッシュボード', venues: '会場管理', users: 'ユーザー', receipts: 'レシート', approvals: '承認', editVenue: '会場を編集', addVenue: '会場を追加', save: '保存', cancel: 'キャンセル', approve: '承認', reject: '否決', totalUsers: '総ユーザー', totalVenues: '総会場', pendingReceipts: '承認待ち', approvedReceipts: '承認済み', packages: 'パッケージ', addPackage: 'パッケージを追加', packageName: 'パッケージ名', duration: '時間 (分)', price: '価格 (THB)', description: '説明', notes: '管理者メモ', noPackages: 'パッケージなし', noNotes: 'メモなし' },
+    admin: { title: '管理パネル', dashboard: 'ダッシュボード', venues: '会場管理', users: 'ユーザー', receipts: 'レシート', approvals: '承認', editVenue: '会場を編集', addVenue: '会場を追加', save: '保存', cancel: 'キャンセル', approve: '承認', reject: '否決', totalUsers: '総ユーザー', totalVenues: '総会場', pendingReceipts: '承認待ち', approvedReceipts: '承認済み', packages: 'パッケージ', addPackage: 'パッケージを追加', packageName: 'パッケージ名', duration: '時間 (分)', price: '価格 (THB)', description: '説明', notes: '管理者メモ', noPackages: 'パッケージなし', noNotes: 'メモなし', pin: 'ピン留め', pinned: 'ピン留め済み', unpin: 'ピン解除' },
     footer: { privacy: 'プライバシー', terms: '利用規約', contact: '連絡先', rights: '全著作権所有。' },
     riskMap: { title: 'バンコク夜リスクマップ', subtitle: 'リアルタイム会場リスク評価', low: '低リスク', medium: '中リスク', high: '高リスク', legend: 'リスク凡例', viewDetails: '詳細を見る' },
     privacy: { title: 'プライバシーポリシー', lastUpdated: '最終更新：2026年2月', content: 'プライバシーは重要です。必要な最小限のデータのみを収集します。第三者に情報を共有することは一切ありません。' },
-    terms: { title: '利用規約', lastUpdated: '最終更新：2026年2月', content: 'Siam Insiderの利用には利用規約への同意が必要です。' },
+    terms: { title: '利用規約', lastUpdated: '最終更新：2026年2月', content: 'Sukhumvit Insiderの利用には利用規約への同意が必要です。' },
     contact: { title: 'お問い合わせ', email: 'メール', phone: '電話', website: 'ウェブサイト', responseTime: '24時間以内にご返答します。' }
   }
 };
@@ -96,7 +96,7 @@ const gachaRewards = [
   { prize: { en: 'Mystery Box', zh: '神秘寶箱', ja: '謎のボックス' }, chance: '35%' },
 ];
 
-export default function SiamInsider() {
+export default function SukhumvitInsider() {
   const [lang, setLang] = useState('en');
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
@@ -320,9 +320,9 @@ export default function SiamInsider() {
 
   async function handleSaveVenue() {
     if (editingVenue?.id) {
-      await supabase.from('venues').update(editingVenue).eq('id', editingVenue.id);
+      await supabase.from('venues').update({ ...editingVenue, updated_at: new Date().toISOString() }).eq('id', editingVenue.id);
     } else {
-      await supabase.from('venues').insert(newVenue);
+      await supabase.from('venues').insert({ ...newVenue, pinned: false, created_at: new Date().toISOString(), updated_at: new Date().toISOString() });
     }
     setEditingVenue(null);
     setNewVenue({ name: '', drink_price: 0, rating: 0, risk_level: 'Low', location: '', category: 'A', description: '', decoration_level: '普通', friendliness: '中', google_maps_url: '' });
@@ -334,6 +334,12 @@ export default function SiamInsider() {
       await supabase.from('venues').delete().eq('id', id);
       fetchVenues();
     }
+  }
+
+  async function handlePinVenue(venue) {
+    const newPinned = !venue.pinned;
+    await supabase.from('venues').update({ pinned: newPinned, updated_at: new Date().toISOString() }).eq('id', venue.id);
+    fetchVenues();
   }
 
   async function handleAddPackage(e) {
@@ -365,7 +371,15 @@ export default function SiamInsider() {
 
   if (loading) return <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center"><Loader className="w-8 h-8 text-purple-500 animate-spin" /></div>;
 
-  const filteredVenues = categoryFilter === 'all' ? venues : venues.filter(v => v.category === categoryFilter);
+  // Sort venues: pinned first, then by updated_at (recently edited), then by drink_price
+  const sortedVenues = [...venues].sort((a, b) => {
+    if (a.pinned && !b.pinned) return -1;
+    if (!a.pinned && b.pinned) return 1;
+    const dateA = a.updated_at ? new Date(a.updated_at) : new Date(0);
+    const dateB = b.updated_at ? new Date(b.updated_at) : new Date(0);
+    return dateB - dateA;
+  });
+  const filteredVenues = categoryFilter === 'all' ? sortedVenues : sortedVenues.filter(v => v.category === categoryFilter);
 
   if (showAdmin && admin) {
     return (
@@ -373,7 +387,7 @@ export default function SiamInsider() {
         <nav className="bg-[#1a1a1a] border-b border-purple-500/20 px-4 py-3 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <Shield className="w-6 h-6 text-purple-500" />
-            <span className="font-bold"><span className="text-purple-500">SIAM</span><span className="text-amber-500">INSIDER</span> <span className="text-gray-500">Admin</span></span>
+            <span className="font-bold"><span className="text-purple-500">SUKHUMVIT</span><span className="text-amber-500">INSIDER</span> <span className="text-gray-500">Admin</span></span>
           </div>
           <div className="flex items-center space-x-4">
             <button onClick={() => setAdminTab('dashboard')} className={`px-3 py-1 rounded ${adminTab === 'dashboard' ? 'bg-purple-600' : 'text-gray-400'}`}>{t.admin.dashboard}</button>
@@ -414,6 +428,7 @@ export default function SiamInsider() {
                         )}
                       </div>
                       <div className="flex space-x-2">
+                        <button onClick={() => handlePinVenue(v)} className={`p-2 rounded ${v.pinned ? 'bg-amber-500/20 text-amber-500' : 'text-gray-400 hover:bg-amber-500/10 hover:text-amber-500'}`} title={v.pinned ? t.admin.unpin : t.admin.pin}><Star className="w-4 h-4" /></button>
                         <button onClick={() => { setSelectedVenueForPackage(v.id); setShowPackageModal(true); }} className="p-2 text-green-400 hover:bg-green-400/10 rounded" title="Add Package"><Plus className="w-4 h-4" /></button>
                         <button onClick={() => { setEditingVenue(v); setShowAddVenue(false); }} className="p-2 text-blue-400 hover:bg-blue-400/10 rounded"><Edit className="w-4 h-4" /></button>
                         <button onClick={() => handleDeleteVenue(v.id)} className="p-2 text-red-400 hover:bg-red-400/10 rounded"><Trash2 className="w-4 h-4" /></button>
@@ -526,7 +541,7 @@ export default function SiamInsider() {
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans">
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-md border-b border-purple-500/20">
         <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-          <div className="flex items-center space-x-2"><Shield className="w-7 h-7 text-purple-500" /><span className="text-lg font-bold tracking-wider"><span className="text-purple-500">SIAM</span><span className="text-amber-500">INSIDER</span></span></div>
+          <div className="flex items-center space-x-2"><Shield className="w-7 h-7 text-purple-500" /><span className="text-lg font-bold tracking-wider"><span className="text-purple-500">SUKHUMVIT</span><span className="text-amber-500">INSIDER</span></span></div>
           <div className="flex items-center space-x-1 bg-[#1a1a1a] rounded-lg p-1">{['en', 'zh', 'ja'].map(l => <button key={l} onClick={() => setLang(l)} className={`px-2 py-1 text-xs rounded ${lang === l ? 'bg-purple-600 text-white' : 'text-gray-400 hover:text-white'}`}>{l.toUpperCase()}</button>)}</div>
           <div className="hidden md:flex items-center space-x-4 text-sm">
             {user && <div className="flex items-center space-x-2 text-amber-500"><Ticket className="w-4 h-4" /><span>{profile?.credits || 0} {t.nav.credits}</span></div>}
@@ -644,7 +659,7 @@ export default function SiamInsider() {
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-purple-400" />
-                <div><div className="text-sm text-gray-400">{t.contact.email}</div><div className="text-white">support@siaminsider.com</div></div>
+                <div><div className="text-sm text-gray-400">{t.contact.email}</div><div className="text-white">support@sukhumvit-insider.com</div></div>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-purple-400" />
@@ -652,7 +667,7 @@ export default function SiamInsider() {
               </div>
               <div className="flex items-center space-x-3">
                 <Globe className="w-5 h-5 text-purple-400" />
-                <div><div className="text-sm text-gray-400">{t.contact.website}</div><div className="text-white">www.siaminsider.com</div></div>
+                <div><div className="text-sm text-gray-400">{t.contact.website}</div><div className="text-white">www.sukhumvit-insider.com</div></div>
               </div>
               <p className="text-sm text-gray-500 pt-4 border-t border-gray-800">{t.contact.responseTime}</p>
             </div>
@@ -703,7 +718,7 @@ export default function SiamInsider() {
         </div>
       </section>
       <footer className="py-8 px-4 border-t border-gray-800">
-        <div className="max-w-7xl mx-auto"><div className="flex flex-col md:flex-row justify-between items-center"><div className="flex items-center space-x-2 mb-4 md:mb-0"><Shield className="w-5 h-5 text-purple-500" /><span className="font-bold text-sm"><span className="text-purple-500">SIAM</span><span className="text-amber-500">INSIDER</span></span></div><div className="flex space-x-4 text-xs text-gray-500"><button onClick={() => setShowPrivacy(true)} className="hover:text-white transition">{t.footer.privacy}</button><button onClick={() => setShowTerms(true)} className="hover:text-white transition">{t.footer.terms}</button><button onClick={() => setShowContact(true)} className="hover:text-white transition">{t.footer.contact}</button></div></div><div className="text-center text-gray-600 text-xs mt-6">© 2026 Siam Insider. {t.footer.rights}</div></div>
+        <div className="max-w-7xl mx-auto"><div className="flex flex-col md:flex-row justify-between items-center"><div className="flex items-center space-x-2 mb-4 md:mb-0"><Shield className="w-5 h-5 text-purple-500" /><span className="font-bold text-sm"><span className="text-purple-500">SUKHUMVIT</span><span className="text-amber-500">INSIDER</span></span></div><div className="flex space-x-4 text-xs text-gray-500"><button onClick={() => setShowPrivacy(true)} className="hover:text-white transition">{t.footer.privacy}</button><button onClick={() => setShowTerms(true)} className="hover:text-white transition">{t.footer.terms}</button><button onClick={() => setShowContact(true)} className="hover:text-white transition">{t.footer.contact}</button></div></div><div className="text-center text-gray-600 text-xs mt-6">© 2026 Sukhumvit Insider. {t.footer.rights}</div></div>
       </footer>
     </div>
   );
