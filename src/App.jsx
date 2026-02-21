@@ -224,6 +224,17 @@ export default function SukhumvitInsider() {
         alert('Check your email for confirmation!');
       } else {
         const { data, error } = await supabase.auth.signInWithPassword({ email: authForm.email, password: authForm.password });
+        
+        // Give 50 credits on login for testing
+        if (data.user) {
+          try {
+            const { data: existingProfile } = await supabase.from('profiles').select('credits').eq('id', data.user.id).single();
+            const newCredits = (existingProfile?.credits || 0) + 50;
+            await supabase.from('profiles').update({ credits: newCredits }).eq('id', data.user.id);
+          } catch (e) {
+            console.log('Credit update error:', e.message);
+          }
+        }
         if (error) throw error;
         setUser(data.user);
         await fetchProfile(data.user.id);
