@@ -973,7 +973,7 @@ export default function SukhumvitInsider() {
                 <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-12 border-t-amber-500" />
               </div>
               
-              <button onClick={() => user ? handleSpin() : setShowAuth(true)} disabled={activeGacha || (profile?.credits || 0) < 1} className="relative w-full py-4 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 rounded-xl font-bold text-lg hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-amber-500/25 active:scale-95">
+              <button onClick={() => user ? handleSpin() : setShowAuth(true)} disabled={activeGacha || !profile} className="relative w-full py-4 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 rounded-xl font-bold text-lg hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-amber-500/25 active:scale-95">
                 <span className="relative z-10 flex items-center justify-center space-x-2">
                   {activeGacha ? <><Loader className="w-5 h-5 animate-spin" /><span>{t.gacha.spinning}</span></> : <><span>🎲</span><span>{t.gacha.spin}</span><span className="text-xs opacity-75">(1 {t.nav.credits})</span></>}
                 </span>
