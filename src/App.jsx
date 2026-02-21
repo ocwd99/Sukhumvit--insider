@@ -597,16 +597,62 @@ export default function SukhumvitInsider() {
         {mobileMenuOpen && <div className="md:hidden bg-[#0a0a0a] border-t border-purple-500/20 px-4 py-4 space-y-3">{user && <div className="flex items-center justify-between py-2 text-amber-500"><span>{t.nav.credits}: {profile?.credits || 0}</span></div>}<a href="#dashboard" className="block py-2" onClick={() => setMobileMenuOpen(false)}>{t.nav.dashboard}</a><a href="#membership" className="block py-2" onClick={() => setMobileMenuOpen(false)}>{t.nav.membership}</a><a href="#gacha" className="block py-2" onClick={() => setMobileMenuOpen(false)}>{t.nav.gacha}</a>{admin && <button onClick={() => { setShowAdmin(true); setMobileMenuOpen(false); }} className="block py-2 text-red-400">{t.nav.admin}</button>}{user ? <button onClick={handleLogout} className="w-full py-3 border border-red-500/50 text-red-500 rounded">{t.nav.logout}</button> : <button onClick={() => { setShowAuth(true); setMobileMenuOpen(false); }} className="w-full py-3 bg-purple-600 rounded">{t.nav.login}</button>}</div>}
       </nav>
       {showAuth && <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"><div className="bg-[#1a1a1a] rounded-2xl p-6 w-full max-w-md border border-purple-500/30"><h2 className="text-2xl font-bold mb-6">{authMode === 'login' ? t.auth.login : t.auth.signup}</h2><form onSubmit={handleAuth} className="space-y-4"><div><label className="block text-sm text-gray-400 mb-1">{t.auth.email}</label><input type="email" value={authForm.email} onChange={e => setAuthForm({...authForm, email: e.target.value})} className="w-full p-3 bg-[#0a0a0a] rounded-lg border border-gray-700 focus:border-purple-500 outline-none" required /></div><div><label className="block text-sm text-gray-400 mb-1">{t.auth.password}</label><input type="password" value={authForm.password} onChange={e => setAuthForm({...authForm, password: e.target.value})} className="w-full p-3 bg-[#0a0a0a] rounded-lg border border-gray-700 focus:border-purple-500 outline-none" required /></div>{authMode === 'signup' && (<><div><label className="block text-sm text-gray-400 mb-1">{t.auth.confirmPassword}</label><input type="password" value={authForm.confirmPassword} onChange={e => setAuthForm({...authForm, confirmPassword: e.target.value})} className="w-full p-3 bg-[#0a0a0a] rounded-lg border border-gray-700 focus:border-purple-500 outline-none" required /></div><div><label className="block text-sm text-gray-400 mb-2">{t.auth.selectPreferences}</label><div className="flex flex-wrap gap-2">{Object.keys(PREFERENCE_LABELS).map(p => <button key={p} type="button" onClick={() => setAuthForm({...authForm, preferences: authForm.preferences.includes(p) ? authForm.preferences.filter(x => x !== p) : [...authForm.preferences, p]})} className={`px-3 py-1 rounded border ${authForm.preferences.includes(p) ? 'bg-purple-600 border-purple-500' : 'border-gray-700'}`}>{p} - {PREFERENCE_LABELS[p][lang]}</button>)}</div></div></>)}{authError && <p className="text-red-500 text-sm">{authError}</p>}<button type="submit" className="w-full py-3 bg-purple-600 rounded-lg font-bold hover:bg-purple-700 transition">{authMode === 'login' ? t.auth.login : t.auth.signup}</button></form><p className="text-center text-gray-400 text-sm mt-4">{authMode === 'login' ? t.auth.noAccount : t.auth.hasAccount}<button onClick={() => setAuthMode(authMode === 'login' ? 'signup' : 'login')} className="text-purple-400 ml-1">{authMode === 'login' ? t.auth.signup : t.auth.login}</button></p><button onClick={() => setShowAuth(false)} className="absolute top-4 right-4 text-gray-400 hover:text-white"><X className="w-6 h-6" /></button></div></div>}
-      <section className="relative pt-28 pb-16 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/20 to-transparent" />
-        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />
-        <div className="max-w-4xl mx-auto relative z-10 text-center">
-          <div className="inline-flex items-center space-x-2 bg-purple-900/30 border border-purple-500/30 rounded-full px-3 py-1.5 mb-6"><Lock className="w-3 h-3 text-purple-400" /><span className="text-sm text-purple-300">{t.hero.trustActive}</span></div>
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">{t.hero.title}</h1>
-          <p className="text-base md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto">{t.hero.subtitle}</p>
-          <div className="flex flex-col sm:flex-row justify-center gap-3 mb-10"><button onClick={() => user ? document.getElementById('membership').scrollIntoView() : setShowAuth(true)} className="px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-800 rounded-lg font-bold hover:scale-105 transition flex items-center justify-center space-x-2"><span>{t.hero.cta}</span><ChevronRight className="w-4 h-4" /></button><button onClick={() => setShowRiskMap(true)} className="px-6 py-3 border border-amber-500/50 text-amber-500 rounded-lg font-bold hover:bg-amber-500/10 transition flex items-center justify-center space-x-2"><AlertTriangle className="w-4 h-4" /><span>{t.hero.cta2}</span></button></div>
-          <div className="grid grid-cols-3 gap-4 pt-10 border-t border-gray-800"><div><div className="text-2xl md:text-4xl font-bold text-purple-500">2,000+</div><div className="text-xs md:text-sm text-gray-500 mt-1">{t.hero.verified}</div></div><div><div className="text-2xl md:text-4xl font-bold text-amber-500">500+</div><div className="text-xs md:text-sm text-gray-500 mt-1">{t.hero.reports}</div></div><div><div className="text-2xl md:text-4xl font-bold text-green-500">99.7%</div><div className="text-xs md:text-sm text-gray-500 mt-1">{t.hero.satisfaction}</div></div></div>
+      <section className="relative pt-28 pb-20 px-4 overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-[#0a0a0a] to-[#0a0a0a]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-purple-600/20 rounded-full blur-[120px]" />
+        <div className="absolute top-40 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}} />
+        
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtOS45NDEgMC0xOCA4LjA1OS0xOCAxOHM4LjA1OSAxOCAxOCAxOCAxOC04LjA1OSAxOC0xOC04LjA1OS0xOC0xOC0xOHptMCAzMmMtNy43MzIgMC0xNC02LjI2OC0xNC0xNHM2LjI2OC0xNCAxNC0xNCAxNCA2LjI2OCAxNCAxNC02LjI2OCAxNC0xNCAxNHoiIGZpbGw9IiM1ZjI1NjciIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvZz48L3N2Zz4=')] opacity-30" />
+        
+        <div className="max-w-5xl mx-auto relative z-10 text-center">
+          {/* Trust Badge */}
+          <div className="inline-flex items-center space-x-2 bg-purple-900/40 border border-purple-500/30 rounded-full px-4 py-2 mb-8 backdrop-blur-sm">
+            <Lock className="w-4 h-4 text-purple-400" />
+            <span className="text-sm text-purple-300 font-medium">{t.hero.trustActive}</span>
+          </div>
+          
+          {/* Title */}
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            <span className="bg-gradient-to-r from-white via-purple-200 to-amber-200 bg-clip-text text-transparent">
+              {t.hero.title}
+            </span>
+          </h1>
+          
+          {/* Subtitle */}
+          <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            {t.hero.subtitle}
+          </p>
+          
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
+            <button onClick={() => user ? document.getElementById('membership').scrollIntoView() : setShowAuth(true)} className="group px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-700 rounded-xl font-bold hover:from-purple-500 hover:to-purple-600 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25 flex items-center justify-center space-x-2">
+              <span>{t.hero.cta}</span>
+              <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+            <button onClick={() => setShowRiskMap(true)} className="px-8 py-4 border border-amber-500/30 text-amber-400 rounded-xl font-bold hover:bg-amber-500/10 transition-all hover:scale-105 flex items-center justify-center space-x-2">
+              <AlertTriangle className="w-5 h-5" />
+              <span>{t.hero.cta2}</span>
+            </button>
+          </div>
+          
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-800/50 max-w-xl mx-auto">
+            <div className="text-center">
+              <div className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">2,000+</div>
+              <div className="text-sm text-gray-500 mt-2">{t.hero.verified}</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">500+</div>
+              <div className="text-sm text-gray-500 mt-2">{t.hero.reports}</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">99.7%</div>
+              <div className="text-sm text-gray-500 mt-2">{t.hero.satisfaction}</div>
+            </div>
+          </div>
         </div>
       </section>
       <section id="dashboard" className="py-12 px-4 bg-[#0f0f0f]">
