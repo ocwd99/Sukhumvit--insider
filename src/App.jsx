@@ -36,7 +36,7 @@ const translations = {
     nav: { dashboard: 'Dashboard', membership: 'Membership', gacha: 'Gacha', support: 'Support', login: 'Login', logout: 'Logout', credits: 'Credits', admin: 'Admin' },
     hero: { trustActive: 'Trust Protocol Active', title: "Navigate Bangkok's Neon Nights with Absolute Certainty", subtitle: 'The premier intelligence platform for premium travelers.', cta: 'Start Intelligence Trial', cta2: 'View Risk Map', verified: 'Verified Members', reports: 'Field Reports', satisfaction: 'Satisfaction Rate' },
     auth: { login: 'Login', signup: 'Sign Up', email: 'Email', password: 'Password', confirmPassword: 'Confirm Password', logout: 'Logout', noAccount: "Don't have an account?", hasAccount: 'Already have an account?', welcome: 'Welcome back!', selectPreferences: 'Select your preferences (multiple)' },
-    dashboard: { title: 'Intelligence Dashboard', priceIndex: 'Bangkok Venue Price Index', updated: 'Updated: Live', trustProtocol: 'Trust Protocol Status', venueVerify: 'Venue Verification', priceSync: 'Price Index Sync', fieldAgent: 'Field Agent Network', emergency: '72-Hour Health Concierge', emergencyDesc: 'Urgent medical assistance, hospital navigation, and emergency translation services.', activate: 'Activate Emergency Protocol', viewAll: 'View All Venues', yourCredits: 'Your Credits', decoration: 'Decoration', friendliness: 'Friendliness', packages: 'Packages' },
+    dashboard: { title: 'Intelligence Dashboard', priceIndex: 'Bangkok Venue Sort', sortBy: 'Sort by', updated: 'Updated: Live', trustProtocol: 'Trust Protocol Status', venueVerify: 'Venue Verification', priceSync: 'Price Index Sync', fieldAgent: 'Field Agent Network', emergency: '72-Hour Health Concierge', emergencyDesc: 'Urgent medical assistance, hospital navigation, and emergency translation services.', activate: 'Activate Emergency Protocol', viewAll: 'View All Venues', yourCredits: 'Your Credits', decoration: 'Decoration', friendliness: 'Friendliness', packages: 'Packages', sortPrice: 'Price', sortRating: 'Rating', sortDecoration: 'Decoration', sortFriendliness: 'Friendliness', sortLocation: 'Location', locked: 'Locked', unlockWith: 'Unlock with', venueDetails: 'Venue Details', address: 'Address', category: 'Category', riskLevel: 'Risk Level', description: 'Description', packages2: 'Packages', noDescription: 'No description', close: 'Close' },
     gacha: { title: 'The Sukhumvit Casino', subtitle: 'Upload payment proof → Get credits → Spin for rewards', spin: 'SPIN NOW', spinning: 'Spinning...', rewardPool: 'Reward Pool', uploadProof: 'Upload Payment Proof', uploadSuccess: 'Upload successful! Waiting for approval.', selectVenue: 'Select Venue', enterAmount: 'Amount (THB)', paymentType: 'Payment Type', receipt: 'Receipt', transfer: 'Transfer', card: 'Credit Card', pendingApproval: 'Pending approval', approved: 'Approved', rejected: 'Rejected', mySubmissions: 'My Submissions', noSubmissions: 'No submissions yet', uploadImage: 'Upload Image', selected: 'Selected' },
     membership: { title: 'Membership Tiers', subtitle: 'Choose your intelligence level', popular: 'MOST POPULAR', getStarted: 'Get Started', current: 'Current Plan', selectTier: 'Select Plan', features: 'Features', contactUs: 'Contact us to purchase' },
     emergency: { title: 'Emergency Request', success: 'Request submitted! We will contact you soon.' },
@@ -52,7 +52,7 @@ const translations = {
     nav: { dashboard: '儀表板', membership: '會員方案', gacha: '轉蛋', support: '支援', login: '登入', logout: '登出', credits: '積分', admin: '管理' },
     hero: { trustActive: '信任協議已啟動', title: '絕對確定地探索曼谷霓虹之夜', subtitle: '為高端旅遊者打造的首選情報平台。', cta: '開始情報試用', cta2: '查看風險地圖', verified: '已驗證會員', reports: '實地報告', satisfaction: '滿意度' },
     auth: { login: '登入', signup: '註冊', email: '電子郵件', password: '密碼', confirmPassword: '確認密碼', logout: '登出', noAccount: '還沒有帳號？', hasAccount: '已經有帳號？', welcome: '歡迎回來！', selectPreferences: '選擇你的喜好（可複選）' },
-    dashboard: { title: '情報儀表板', priceIndex: '曼谷店家價格排序', updated: '更新：即時', trustProtocol: '信任協議狀態', venueVerify: '場地驗證', priceSync: '價格指數同步', fieldAgent: '特派員網絡', emergency: '72小時健康管家', emergencyDesc: '緊急醫療協助、醫院導航、緊急翻譯服務。', activate: '啟動緊急協議', viewAll: '查看全部場地', yourCredits: '你的積分', decoration: '裝潢', friendliness: '親和力', packages: '套餐' },
+    dashboard: { title: '情報儀表板', priceIndex: '曼谷店家排序', sortBy: '排序方式', updated: '更新：即時', trustProtocol: '信任協議狀態', venueVerify: '場地驗證', priceSync: '價格指數同步', fieldAgent: '特派員網絡', emergency: '72小時健康管家', emergencyDesc: '緊急醫療協助、醫院導航、緊急翻譯服務。', activate: '啟動緊急協議', viewAll: '查看全部場地', yourCredits: '你的積分', decoration: '裝潢', friendliness: '親和力', packages: '套餐', sortPrice: '價格', sortRating: '評分', sortDecoration: '裝潢', sortFriendliness: '親和力', sortLocation: '地點', locked: '鎖定', unlockWith: '解鎖', venueDetails: '店家詳情', address: '地址', category: '分類', riskLevel: '風險等級', description: '說明', packages2: '套餐', noDescription: '無說明', close: '關閉' },
     gacha: { title: '暹羅賭場', subtitle: '上傳付款證明 → 獲得積分 → 轉蛋抽獎', spin: '立即轉蛋', spinning: '轉蛋中...', rewardPool: '獎勵池', uploadProof: '上傳付款證明', uploadSuccess: '上傳成功！等待審核中。', selectVenue: '選擇場地', enterAmount: '金額 (THB)', paymentType: '付款類型', receipt: '收據', transfer: '轉帳', card: '刷卡', pendingApproval: '等待審核', approved: '已通過', rejected: '已拒絕', mySubmissions: '我的提交', noSubmissions: '尚未提交', uploadImage: '上傳圖片', selected: '已選擇' },
     membership: { title: '會員方案', subtitle: '選擇你的情報級別', popular: '熱門', getStarted: '立即開始', current: '目前方案', selectTier: '選擇方案', features: '功能特色', contactUs: '聯繫我們購買' },
     emergency: { title: '緊急請求', success: '請求已提交！我們會儘快聯繫你。' },
@@ -97,7 +97,19 @@ const gachaRewards = [
 ];
 
 export default function SukhumvitInsider() {
-  const [lang, setLang] = useState('en');
+  // 讀取保存的語言偏好，否則預設為英文
+  const savedLang = localStorage.getItem('sukhumvit_lang') || 'en';
+  const [lang, setLang] = useState(savedLang);
+  
+  // 語言變更時保存到 localStorage
+  const handleSetLang = (newLang) => {
+    setLang(newLang);
+    localStorage.setItem('sukhumvit_lang', newLang);
+  };
+  
+  // 排序狀態
+  const [sortBy, setSortBy] = useState('price'); // price, rating, decoration, friendliness, location
+  const [selectedVenue, setSelectedVenue] = useState(null);
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
   const [admin, setAdmin] = useState(null);
@@ -371,13 +383,33 @@ export default function SukhumvitInsider() {
 
   if (loading) return <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center"><Loader className="w-8 h-8 text-purple-500 animate-spin" /></div>;
 
-  // Sort venues: pinned first, then by updated_at (recently edited), then by drink_price
+  // Sort venues: pinned first, then by selected sort option
   const sortedVenues = [...venues].sort((a, b) => {
+    // Pinned always first
     if (a.Pinned && !b.Pinned) return -1;
     if (!a.Pinned && b.Pinned) return 1;
-    const dateA = a.updated_at ? new Date(a.updated_at) : new Date(0);
-    const dateB = b.updated_at ? new Date(b.updated_at) : new Date(0);
-    return dateB - dateA;
+    
+    // Sort by selected option
+    switch(sortBy) {
+      case 'price':
+        return a.drink_price - b.drink_price;
+      case 'rating':
+        return b.rating - a.rating;
+      case 'decoration':
+        const decorOrder = {'豪': 4, '高': 3, '中': 2, '普通': 1, '低': 0};
+        const aDecor = decorOrder[a.decoration_level] || 0;
+        const bDecor = decorOrder[b.decoration_level] || 0;
+        return bDecor - aDecor;
+      case 'friendliness':
+        const friendOrder = {'高': 3, '中': 2, '普通': 1, '低': 0};
+        const aFriend = friendOrder[a.friendliness] || 0;
+        const bFriend = friendOrder[b.friendliness] || 0;
+        return bFriend - aFriend;
+      case 'location':
+        return (a.location || '').localeCompare(b.location || '');
+      default:
+        return a.drink_price - b.drink_price;
+    }
   });
   const filteredVenues = categoryFilter === 'all' ? sortedVenues : sortedVenues.filter(v => v.category === categoryFilter);
 
@@ -573,8 +605,8 @@ export default function SukhumvitInsider() {
           <div className="flex items-center space-x-3 mb-8"><Activity className="w-7 h-7 text-purple-500" /><h2 className="text-2xl font-bold">{t.dashboard.title}</h2>{user && profile && <span className="ml-auto text-amber-500 flex items-center space-x-1"><Ticket className="w-4 h-4" /><span>{t.dashboard.yourCredits}: {profile.credits}</span></span>}</div>
           <div className="grid lg:grid-cols-2 gap-6">
             <div className="bg-[#1a1a1a] rounded-2xl p-5 border border-purple-500/20">
-              <div className="flex justify-between items-center mb-4"><h3 className="text-lg font-bold flex items-center space-x-2"><DollarSign className="w-5 h-5 text-amber-500" /><span>{t.dashboard.priceIndex}</span></h3><span className="text-xs text-gray-500">{t.dashboard.updated}</span></div>
-              <div className="space-y-3">{filteredVenues.slice(0, showAllVenues ? 20 : 5).map((item, i) => (<div key={i} className="flex items-center justify-between p-3 bg-[#0a0a0a] rounded-lg"><div className="flex items-center space-x-3"><div className="w-9 h-9 bg-purple-900/50 rounded-lg flex items-center justify-center"><Star className="w-4 h-4 text-purple-400" /></div><div><div className="font-medium text-sm">{item.name}</div><div className="text-xs text-gray-500 flex items-center space-x-1"><span className={`px-1.5 py-0.5 rounded text-xs ${item.risk_level === 'Low' ? 'bg-green-900 text-green-400' : 'bg-amber-900 text-amber-400'}`}>{item.risk_level}</span><span className="text-gray-600">|</span><span className="text-purple-400">{item.category}</span><span className="text-gray-600">|</span><span className="text-amber-400">{item.decoration_level || '普通'}</span></div></div></div><div className="text-right"><div className="text-amber-500 font-bold">{item.drink_price}฿</div><div className="text-xs text-gray-500">{item.rating} ★</div></div></div>))}</div>
+              <div className="flex justify-between items-center mb-4"><h3 className="text-lg font-bold flex items-center space-x-2"><DollarSign className="w-5 h-5 text-amber-500" /><span>{t.dashboard.priceIndex}</span></h3><select value={sortBy} onChange={e => setSortBy(e.target.value)} className="py-1 px-2 bg-[#0a0a0a] border border-purple-500/30 rounded-lg text-xs"><option value="price">{t.dashboard.sortPrice}</option><option value="rating">{t.dashboard.sortRating}</option><option value="decoration">{t.dashboard.sortDecoration}</option><option value="friendliness">{t.dashboard.sortFriendliness}</option><option value="location">{t.dashboard.sortLocation}</option></select></div>
+              <div className="space-y-3">{filteredVenues.slice(0, showAllVenues ? 20 : 5).map((item, i) => (<div key={i} onClick={() => setSelectedVenue(item)} className="flex items-center justify-between p-3 bg-[#0a0a0a] rounded-lg hover:bg-purple-900/20 cursor-pointer transition"><div className="flex items-center space-x-3"><div className="w-9 h-9 bg-purple-900/50 rounded-lg flex items-center justify-center"><Star className="w-4 h-4 text-purple-400" /></div><div><div className="font-medium text-sm">{item.name}</div><div className="text-xs text-gray-500 flex items-center space-x-1"><span className={`px-1.5 py-0.5 rounded text-xs ${item.risk_level === 'Low' ? 'bg-green-900 text-green-400' : 'bg-amber-900 text-amber-400'}`}>{item.risk_level}</span><span className="text-gray-600">|</span><span className="text-purple-400">{item.category}</span><span className="text-gray-600">|</span><span className="text-amber-400">{item.decoration_level || '普通'}</span></div></div></div><div className="text-right"><div className="text-amber-500 font-bold">{item.drink_price}฿</div><div className="text-xs text-gray-500">{item.rating} ★</div></div></div>))}</div>
               <div className="flex gap-2 mt-4"><button onClick={() => setShowAllVenues(!showAllVenues)} className="flex-1 py-3 border border-purple-500/30 text-purple-400 rounded-lg hover:bg-purple-500/10 transition text-sm">{showAllVenues ? 'Show Less' : t.dashboard.viewAll}</button><select value={categoryFilter} onChange={e => setCategoryFilter(e.target.value)} className="py-3 px-2 bg-[#0a0a0a] border border-purple-500/30 rounded-lg text-sm">{Object.keys(PREFERENCE_LABELS).map(c => <option key={c} value={c}>{c} - {PREFERENCE_LABELS[c][lang]}</option>)}</select></div>
             </div>
             <div className="space-4">
@@ -696,6 +728,81 @@ export default function SukhumvitInsider() {
           </div>
         </div>
       )}
+
+      {/* Venue Detail Modal */}
+      {selectedVenue && (
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+          <div className="bg-[#1a1a1a] rounded-2xl p-6 w-full max-w-lg border border-purple-500/30 max-h-[80vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold">{selectedVenue.name}</h2>
+              <button onClick={() => setSelectedVenue(null)} className="text-gray-400 hover:text-white"><X className="w-6 h-6" /></button>
+            </div>
+            
+            <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-[#0a0a0a] p-3 rounded-lg">
+                  <div className="text-xs text-gray-500 mb-1">{t.dashboard.price}</div>
+                  <div className="text-amber-500 font-bold">{selectedVenue.drink_price}฿</div>
+                </div>
+                <div className="bg-[#0a0a0a] p-3 rounded-lg">
+                  <div className="text-xs text-gray-500 mb-1">{t.dashboard.rating}</div>
+                  <div className="text-amber-400 font-bold">{selectedVenue.rating} ★</div>
+                </div>
+              </div>
+              
+              <div className="bg-[#0a0a0a] p-3 rounded-lg">
+                <div className="text-xs text-gray-500 mb-1">{t.dashboard.category}</div>
+                <div className="text-purple-400 font-bold">{selectedVenue.category}</div>
+              </div>
+              
+              <div className="bg-[#0a0a0a] p-3 rounded-lg">
+                <div className="text-xs text-gray-500 mb-1">{t.dashboard.riskLevel}</div>
+                <span className={`px-2 py-1 rounded text-xs ${selectedVenue.risk_level === 'Low' ? 'bg-green-900 text-green-400' : 'bg-amber-900 text-amber-400'}`}>
+                  {selectedVenue.risk_level}
+                </span>
+              </div>
+              
+              <div className="bg-[#0a0a0a] p-3 rounded-lg">
+                <div className="text-xs text-gray-500 mb-1">{t.dashboard.decoration}</div>
+                <div className="text-white">{selectedVenue.decoration_level || t.dashboard.noDescription}</div>
+              </div>
+              
+              <div className="bg-[#0a0a0a] p-3 rounded-lg">
+                <div className="text-xs text-gray-500 mb-1">{t.dashboard.friendliness}</div>
+                <div className="text-white">{selectedVenue.friendliness || t.dashboard.noDescription}</div>
+              </div>
+              
+              <div className="bg-[#0a0a0a] p-3 rounded-lg">
+                <div className="text-xs text-gray-500 mb-1">{t.dashboard.address}</div>
+                <div className="text-white">{selectedVenue.location || t.dashboard.noDescription}</div>
+              </div>
+              
+              {selectedVenue.google_maps_url && (
+                <a href={selectedVenue.google_maps_url} target="_blank" rel="noopener noreferrer" className="block w-full py-3 bg-purple-600 rounded-lg font-bold hover:bg-purple-700 transition text-center">
+                  {t.dashboard.viewDetails} →
+                </a>
+              )}
+              
+              {(venuePackages[selectedVenue.id] || []).length > 0 && (
+                <div className="bg-[#0a0a0a] p-3 rounded-lg">
+                  <div className="text-xs text-gray-500 mb-2">{t.dashboard.packages2}</div>
+                  <div className="space-y-2">
+                    {(venuePackages[selectedVenue.id] || []).map(pkg => (
+                      <div key={pkg.id} className="flex justify-between items-center text-sm">
+                        <span className="text-white">{pkg.name}</span>
+                        <span className="text-amber-500">{pkg.duration_minutes}min / {pkg.price}฿</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+            
+            <button onClick={() => setSelectedVenue(null)} className="w-full mt-4 py-3 border border-gray-700 text-gray-400 rounded-lg hover:bg-gray-800 transition">{t.dashboard.close}</button>
+          </div>
+        </div>
+      )}
+
       <section id="gacha" className="py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-10"><div className="flex items-center justify-center space-x-3 mb-3"><Ticket className="w-7 h-7 text-amber-500" /><h2 className="text-2xl font-bold">{t.gacha.title}</h2></div><p className="text-gray-400 text-sm">{t.gacha.subtitle}</p></div>
