@@ -4,7 +4,7 @@ import {
   ChevronRight, DollarSign, Star, Clock, TrendingUp, Lock, Ticket,
   Menu, X, LogOut, User, Upload, CheckCircle, Loader, Image as ImageIcon,
   CreditCard, Wallet, Eye, Edit, Trash2, Plus, Filter, Package, MessageSquare,
-  Map, Globe, Phone, Mail, ExternalLink, FileText
+  Map, Globe, Phone, Mail, ExternalLink, FileText, Search
 } from 'lucide-react';
 import { supabase } from './supabase';
 
@@ -36,7 +36,7 @@ const translations = {
     nav: { dashboard: 'Dashboard', membership: 'Membership', gacha: 'Gacha', support: 'Support', login: 'Login', logout: 'Logout', credits: 'Credits', admin: 'Admin' },
     hero: { trustActive: 'Trust Protocol Active', title: "Navigate Bangkok's Neon Nights with Absolute Certainty", subtitle: 'The premier intelligence platform for premium travelers.', cta: 'Start Intelligence Trial', cta2: 'View Risk Map', verified: 'Verified Members', reports: 'Field Reports', satisfaction: 'Satisfaction Rate' },
     auth: { login: 'Login', signup: 'Sign Up', email: 'Email', password: 'Password', confirmPassword: 'Confirm Password', logout: 'Logout', noAccount: "Don't have an account?", hasAccount: 'Already have an account?', welcome: 'Welcome back!', selectPreferences: 'Select your preferences (multiple)' },
-    dashboard: { title: 'Intelligence Dashboard', priceIndex: 'Bangkok Venue Sort', sortBy: 'Sort by', updated: 'Updated: Live', trustProtocol: 'Trust Protocol Status', venueVerify: 'Venue Verification', priceSync: 'Price Index Sync', fieldAgent: 'Field Agent Network', emergency: '72-Hour Health Concierge', emergencyDesc: 'Urgent medical assistance, hospital navigation, and emergency translation services.', activate: 'Activate Emergency Protocol', viewAll: 'View All Venues', yourCredits: 'Your Credits', decoration: 'Decoration', friendliness: 'Friendliness', packages: 'Packages', sortPrice: 'Price', sortRating: 'Rating', sortDecoration: 'Decoration', sortFriendliness: 'Friendliness', sortLocation: 'Location', locked: 'Locked', unlockWith: 'Unlock with', venueDetails: 'Venue Details', address: 'Address', category: 'Category', riskLevel: 'Risk Level', description: 'Description', packages2: 'Packages', noDescription: 'No description', close: 'Close' },
+    dashboard: { title: 'Intelligence Dashboard', priceIndex: 'Bangkok Venue Sort', sortBy: 'Sort by', search: 'Search venues...', updated: 'Updated: Live', trustProtocol: 'Trust Protocol Status', venueVerify: 'Venue Verification', priceSync: 'Price Index Sync', fieldAgent: 'Field Agent Network', emergency: '72-Hour Health Concierge', emergencyDesc: 'Urgent medical assistance, hospital navigation, and emergency translation services.', activate: 'Activate Emergency Protocol', viewAll: 'View All Venues', yourCredits: 'Your Credits', decoration: 'Decoration', friendliness: 'Friendliness', packages: 'Packages', sortPrice: 'Price', sortRating: 'Rating', sortDecoration: 'Decoration', sortFriendliness: 'Friendliness', sortLocation: 'Location', locked: 'Locked', unlockWith: 'Unlock with', venueDetails: 'Venue Details', address: 'Address', category: 'Category', riskLevel: 'Risk Level', description: 'Description', packages2: 'Packages', noDescription: 'No description', close: 'Close' },
     gacha: { title: 'The Sukhumvit Casino', subtitle: 'Upload payment proof → Get credits → Spin for rewards', spin: 'SPIN NOW', spinning: 'Spinning...', rewardPool: 'Reward Pool', uploadProof: 'Upload Payment Proof', uploadSuccess: 'Upload successful! Waiting for approval.', selectVenue: 'Select Venue', enterAmount: 'Amount (THB)', paymentType: 'Payment Type', receipt: 'Receipt', transfer: 'Transfer', card: 'Credit Card', pendingApproval: 'Pending approval', approved: 'Approved', rejected: 'Rejected', mySubmissions: 'My Submissions', noSubmissions: 'No submissions yet', uploadImage: 'Upload Image', selected: 'Selected' },
     membership: { title: 'Membership Tiers', subtitle: 'Choose your intelligence level', popular: 'MOST POPULAR', getStarted: 'Get Started', current: 'Current Plan', selectTier: 'Select Plan', features: 'Features', contactUs: 'Contact us to purchase' },
     emergency: { title: 'Emergency Request', success: 'Request submitted! We will contact you soon.' },
@@ -52,7 +52,7 @@ const translations = {
     nav: { dashboard: '儀表板', membership: '會員方案', gacha: '轉蛋', support: '支援', login: '登入', logout: '登出', credits: '積分', admin: '管理' },
     hero: { trustActive: '信任協議已啟動', title: '絕對確定地探索曼谷霓虹之夜', subtitle: '為高端旅遊者打造的首選情報平台。', cta: '開始情報試用', cta2: '查看風險地圖', verified: '已驗證會員', reports: '實地報告', satisfaction: '滿意度' },
     auth: { login: '登入', signup: '註冊', email: '電子郵件', password: '密碼', confirmPassword: '確認密碼', logout: '登出', noAccount: '還沒有帳號？', hasAccount: '已經有帳號？', welcome: '歡迎回來！', selectPreferences: '選擇你的喜好（可複選）' },
-    dashboard: { title: '情報儀表板', priceIndex: '曼谷店家排序', sortBy: '排序方式', updated: '更新：即時', trustProtocol: '信任協議狀態', venueVerify: '場地驗證', priceSync: '價格指數同步', fieldAgent: '特派員網絡', emergency: '72小時健康管家', emergencyDesc: '緊急醫療協助、醫院導航、緊急翻譯服務。', activate: '啟動緊急協議', viewAll: '查看全部場地', yourCredits: '你的積分', decoration: '裝潢', friendliness: '親和力', packages: '套餐', sortPrice: '價格', sortRating: '評分', sortDecoration: '裝潢', sortFriendliness: '親和力', sortLocation: '地點', locked: '鎖定', unlockWith: '解鎖', venueDetails: '店家詳情', address: '地址', category: '分類', riskLevel: '風險等級', description: '說明', packages2: '套餐', noDescription: '無說明', close: '關閉' },
+    dashboard: { title: '情報儀表板', priceIndex: '曼谷店家排序', sortBy: '排序方式', search: '搜尋店家...', updated: '更新：即時', trustProtocol: '信任協議狀態', venueVerify: '場地驗證', priceSync: '價格指數同步', fieldAgent: '特派員網絡', emergency: '72小時健康管家', emergencyDesc: '緊急醫療協助、醫院導航、緊急翻譯服務。', activate: '啟動緊急協議', viewAll: '查看全部場地', yourCredits: '你的積分', decoration: '裝潢', friendliness: '親和力', packages: '套餐', sortPrice: '價格', sortRating: '評分', sortDecoration: '裝潢', sortFriendliness: '親和力', sortLocation: '地點', locked: '鎖定', unlockWith: '解鎖', venueDetails: '店家詳情', address: '地址', category: '分類', riskLevel: '風險等級', description: '說明', packages2: '套餐', noDescription: '無說明', close: '關閉' },
     gacha: { title: '暹羅賭場', subtitle: '上傳付款證明 → 獲得積分 → 轉蛋抽獎', spin: '立即轉蛋', spinning: '轉蛋中...', rewardPool: '獎勵池', uploadProof: '上傳付款證明', uploadSuccess: '上傳成功！等待審核中。', selectVenue: '選擇場地', enterAmount: '金額 (THB)', paymentType: '付款類型', receipt: '收據', transfer: '轉帳', card: '刷卡', pendingApproval: '等待審核', approved: '已通過', rejected: '已拒絕', mySubmissions: '我的提交', noSubmissions: '尚未提交', uploadImage: '上傳圖片', selected: '已選擇' },
     membership: { title: '會員方案', subtitle: '選擇你的情報級別', popular: '熱門', getStarted: '立即開始', current: '目前方案', selectTier: '選擇方案', features: '功能特色', contactUs: '聯繫我們購買' },
     emergency: { title: '緊急請求', success: '請求已提交！我們會儘快聯繫你。' },
@@ -109,6 +109,7 @@ export default function SukhumvitInsider() {
   
   // 排序狀態
   const [sortBy, setSortBy] = useState('price'); // price, rating, decoration, friendliness, location
+  const [searchQuery, setSearchQuery] = useState('');
   const [selectedVenue, setSelectedVenue] = useState(null);
   const [user, setUser] = useState(null);
   const [profile, setProfile] = useState(null);
@@ -411,7 +412,15 @@ export default function SukhumvitInsider() {
         return a.drink_price - b.drink_price;
     }
   });
-  const filteredVenues = categoryFilter === 'all' ? sortedVenues : sortedVenues.filter(v => v.category === categoryFilter);
+  // Filter by category and search
+  const filteredVenues = sortedVenues.filter(v => {
+    const matchesCategory = categoryFilter === 'all' || v.category === categoryFilter;
+    const matchesSearch = !searchQuery || 
+      (v.name && v.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (v.location && v.location.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (v.category && v.category.toLowerCase().includes(searchQuery.toLowerCase()));
+    return matchesCategory && matchesSearch;
+  });
 
   if (showAdmin && admin) {
     return (
@@ -605,18 +614,43 @@ export default function SukhumvitInsider() {
           <div className="flex items-center space-x-3 mb-8"><Activity className="w-7 h-7 text-purple-500" /><h2 className="text-2xl font-bold">{t.dashboard.title}</h2>{user && profile && <span className="ml-auto text-amber-500 flex items-center space-x-1"><Ticket className="w-4 h-4" /><span>{t.dashboard.yourCredits}: {profile.credits}</span></span>}</div>
           <div className="grid lg:grid-cols-2 gap-6">
             <div className="bg-[#1a1a1a] rounded-2xl p-5 border border-purple-500/20">
-              <div className="flex justify-between items-center mb-4"><h3 className="text-lg font-bold flex items-center space-x-2"><DollarSign className="w-5 h-5 text-amber-500" /><span>{t.dashboard.priceIndex}</span></h3><select value={sortBy} onChange={e => setSortBy(e.target.value)} className="py-1 px-2 bg-[#0a0a0a] border border-purple-500/30 rounded-lg text-xs"><option value="price">{t.dashboard.sortPrice}</option><option value="rating">{t.dashboard.sortRating}</option><option value="decoration">{t.dashboard.sortDecoration}</option><option value="friendliness">{t.dashboard.sortFriendliness}</option><option value="location">{t.dashboard.sortLocation}</option></select></div>
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4"><h3 className="text-lg font-bold flex items-center space-x-2"><DollarSign className="w-5 h-5 text-amber-500" /><span>{t.dashboard.priceIndex}</span></h3><div className="flex items-center gap-2 w-full sm:w-auto"><div className="relative flex-1 sm:flex-initial"><Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" /><input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder={t.dashboard.search} className="w-full sm:w-40 pl-9 pr-3 py-2 bg-[#0a0a0a] border border-purple-500/30 rounded-lg text-xs focus:border-purple-500 outline-none" /></div><select value={sortBy} onChange={e => setSortBy(e.target.value)} className="py-2 px-3 bg-[#0a0a0a] border border-purple-500/30 rounded-lg text-xs"><option value="price">{t.dashboard.sortPrice}</option><option value="rating">{t.dashboard.sortRating}</option><option value="decoration">{t.dashboard.sortDecoration}</option><option value="friendliness">{t.dashboard.sortFriendliness}</option><option value="location">{t.dashboard.sortLocation}</option></select></div></div>
               <div className="space-y-3">{filteredVenues.slice(0, showAllVenues ? 20 : 5).map((item, i) => (<div key={i} onClick={() => setSelectedVenue(item)} className="flex items-center justify-between p-3 bg-[#0a0a0a] rounded-lg hover:bg-purple-900/20 cursor-pointer transition"><div className="flex items-center space-x-3"><div className="w-9 h-9 bg-purple-900/50 rounded-lg flex items-center justify-center"><Star className="w-4 h-4 text-purple-400" /></div><div><div className="font-medium text-sm">{item.name}</div><div className="text-xs text-gray-500 flex items-center space-x-1"><span className={`px-1.5 py-0.5 rounded text-xs ${item.risk_level === 'Low' ? 'bg-green-900 text-green-400' : 'bg-amber-900 text-amber-400'}`}>{item.risk_level}</span><span className="text-gray-600">|</span><span className="text-purple-400">{item.category}</span><span className="text-gray-600">|</span><span className="text-amber-400">{item.decoration_level || '普通'}</span></div></div></div><div className="text-right"><div className="text-amber-500 font-bold">{item.drink_price}฿</div><div className="text-xs text-gray-500">{item.rating} ★</div></div></div>))}</div>
               <div className="flex gap-2 mt-4"><button onClick={() => setShowAllVenues(!showAllVenues)} className="flex-1 py-3 border border-purple-500/30 text-purple-400 rounded-lg hover:bg-purple-500/10 transition text-sm">{showAllVenues ? 'Show Less' : t.dashboard.viewAll}</button><select value={categoryFilter} onChange={e => setCategoryFilter(e.target.value)} className="py-3 px-2 bg-[#0a0a0a] border border-purple-500/30 rounded-lg text-sm">{Object.keys(PREFERENCE_LABELS).map(c => <option key={c} value={c}>{c} - {PREFERENCE_LABELS[c][lang]}</option>)}</select></div>
             </div>
             <div className="space-4">
               <div className="bg-[#1a1a1a] rounded-2xl p-5 border border-amber-500/20"><h3 className="text-lg font-bold mb-3 flex items-center space-x-2"><Shield className="w-5 h-5 text-amber-500" /><span>{t.dashboard.trustProtocol}</span></h3><div className="space-y-2"><div className="flex items-center justify-between p-2.5 bg-[#0a0a0a] rounded-lg"><span className="text-gray-400 text-sm">{t.dashboard.venueVerify}</span><span className="text-green-400 flex items-center space-x-1 text-sm"><span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" /><span>Active</span></span></div><div className="flex items-center justify-between p-2.5 bg-[#0a0a0a] rounded-lg"><span className="text-gray-400 text-sm">{t.dashboard.priceSync}</span><span className="text-green-400 flex items-center space-x-1 text-sm"><span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" /><span>Live</span></span></div></div></div>
-              <div className="bg-gradient-to-br from-red-900/20 to-[#1a1a1a] rounded-2xl p-5 border border-red-500/30"><h3 className="text-lg font-bold mb-2 flex items-center space-x-2"><Heart className="w-5 h-5 text-red-500" /><span>{t.dashboard.emergency}</span></h3><p className="text-gray-400 text-sm mb-3">{t.dashboard.emergencyDesc}</p><button onClick={() => setShowEmergency(true)} className="w-full py-3 bg-red-600 hover:bg-red-700 rounded-lg font-bold transition flex items-center justify-center space-x-2 text-sm"><Clock className="w-4 h-4" /><span>{t.dashboard.activate}</span></button></div>
+              <div className="bg-gradient-to-br from-red-900/20 to-[#1a1a1a] rounded-2xl p-6 border border-red-500/30 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/10 rounded-full blur-3xl" />
+                <h3 className="text-lg font-bold mb-2 flex items-center space-x-2 relative z-10"><Heart className="w-5 h-5 text-red-500 animate-pulse" /><span>{t.dashboard.emergency}</span></h3>
+                <p className="text-gray-400 text-sm mb-4 relative z-10">{t.dashboard.emergencyDesc}</p>
+                <button onClick={() => setShowEmergency(true)} className="w-full py-3.5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 rounded-xl font-bold transition-all flex items-center justify-center space-x-2 shadow-lg shadow-red-500/25 hover:shadow-red-500/40 relative z-10">
+                  <Phone className="w-4 h-4" /><span>{t.dashboard.activate}</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
-      {showEmergency && <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"><div className="bg-[#1a1a1a] rounded-2xl p-6 w-full max-w-md border border-red-500/30">{emergencySuccess ? <div className="text-center py-8"><CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" /><p className="text-lg">{t.emergency.success}</p></div> : <><h2 className="text-2xl font-bold mb-6 flex items-center space-x-2"><Heart className="w-6 h-6 text-red-500" /><span>{t.emergency.title}</span></h2><form onSubmit={handleEmergency} className="space-y-4"><div><label className="block text-sm text-gray-400 mb-1">Location</label><input type="text" value={emergencyForm.location} onChange={e => setEmergencyForm({...emergencyForm, location: e.target.value})} className="w-full p-3 bg-[#0a0a0a] rounded-lg border border-gray-700 focus:border-red-500 outline-none" required /></div><div><label className="block text-sm text-gray-400 mb-1">Description</label><textarea value={emergencyForm.description} onChange={e => setEmergencyForm({...emergencyForm, description: e.target.value})} className="w-full p-3 bg-[#0a0a0a] rounded-lg border border-gray-700 focus:border-red-500 outline-none h-24" required /></div><button type="submit" className="w-full py-3 bg-red-600 rounded-lg font-bold hover:bg-red-700 transition">Submit</button></form></>}<button onClick={() => setShowEmergency(false)} className="absolute top-4 right-4 text-gray-400 hover:text-white"><X className="w-6 h-6" /></button></div></div>}
+      {showEmergency && <div className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4 backdrop-blur-sm">
+        <div className="bg-[#1a1a1a] rounded-3xl p-8 w-full max-w-lg border border-red-500/30 shadow-2xl shadow-red-500/10 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-orange-500 to-red-500" />
+          {emergencySuccess ? <div className="text-center py-8"><div className="w-20 h-20 mx-auto mb-4 bg-green-500/20 rounded-full flex items-center justify-center"><CheckCircle className="w-12 h-12 text-green-500" /></div><p className="text-xl font-bold text-green-500 mb-2">{t.emergency.success}</p></div> : <>
+            <h2 className="text-2xl font-bold mb-2 flex items-center space-x-3"><div className="w-10 h-10 bg-red-500/20 rounded-xl flex items-center justify-center"><Heart className="w-6 h-6 text-red-500" /></div><span>{t.emergency.title}</span></h2>
+            <p className="text-gray-400 text-sm mb-6">請填寫以下資訊，我們將儘速與您聯繫。</p>
+            <form onSubmit={handleEmergency} className="space-y-5">
+              <div className="grid grid-cols-2 gap-4">
+                <div><label className="block text-sm text-gray-400 mb-2">您的姓名</label><input type="text" placeholder="姓名" className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none" required /></div>
+                <div><label className="block text-sm text-gray-400 mb-2">聯絡電話</label><input type="tel" placeholder="+66 xxx xxx xxxx" className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none" required /></div>
+              </div>
+              <div><label className="block text-sm text-gray-400 mb-2">所在位置</label><input type="text" value={emergencyForm.location} onChange={e => setEmergencyForm({...emergencyForm, location: e.target.value})} placeholder="餐廳名稱或地址" className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none" required /></div>
+              <div><label className="block text-sm text-gray-400 mb-2">緊急情況說明</label><textarea value={emergencyForm.description} onChange={e => setEmergencyForm({...emergencyForm, description: e.target.value})} placeholder="請描述您的緊急情況..." className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none h-28 resize-none" required /></div>
+              <button type="submit" className="w-full py-4 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 rounded-xl font-bold transition-all shadow-lg shadow-red-500/25">立即尋求協助</button>
+            </form>
+          </>}
+          <button onClick={() => setShowEmergency(false)} className="absolute top-4 right-4 text-gray-500 hover:text-white p-2"><X className="w-5 h-5" /></button>
+        </div>
+      </div>}
 
       {/* Risk Map Modal */}
       {showRiskMap && (
