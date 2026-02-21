@@ -803,25 +803,70 @@ export default function SukhumvitInsider() {
         </div>
       )}
 
-      <section id="gacha" className="py-12 px-4">
+      <section id="gacha" className="py-16 px-4 bg-gradient-to-b from-[#0a0a0a] to-[#1a1a1a]">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-10"><div className="flex items-center justify-center space-x-3 mb-3"><Ticket className="w-7 h-7 text-amber-500" /><h2 className="text-2xl font-bold">{t.gacha.title}</h2></div><p className="text-gray-400 text-sm">{t.gacha.subtitle}</p></div>
+          <div className="text-center mb-10"><div className="flex items-center justify-center space-x-3 mb-3"><div className="relative"><Ticket className="w-8 h-8 text-amber-500" /><div className="absolute -top-1 -right-1 w-3 h-3 bg-amber-500 rounded-full animate-ping" /></div><h2 className="text-3xl font-bold bg-gradient-to-r from-amber-400 to-purple-500 bg-clip-text text-transparent">{t.gacha.title}</h2></div><p className="text-gray-400 text-sm max-w-md mx-auto">{t.gacha.subtitle}</p></div>
           <div className="max-w-sm mx-auto">
-            <div className="bg-[#1a1a1a] rounded-2xl p-6 border border-amber-500/30 text-center">
-              <div className="relative w-36 h-36 mx-auto mb-6"><div className={`absolute inset-0 bg-gradient-to-br from-purple-600 to-amber-600 rounded-full ${activeGacha ? 'animate-spin' : 'animate-pulse'}`} style={{animationDuration: '3s'}} /><div className="absolute inset-3 bg-[#0a0a0a] rounded-full flex items-center justify-center">{gachaResult ? <span className="text-lg font-bold text-amber-400 px-2">{gachaResult}</span> : <span className="text-4xl">🎰</span>}</div></div>
-              <button onClick={handleSpin} disabled={activeGacha} className="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-700 rounded-lg font-bold hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed">{activeGacha ? t.gacha.spinning : `${t.gacha.spin} (1 ${t.nav.credits})`}</button>
-              <button onClick={() => setShowUpload(true)} className="w-full mt-3 py-3 border border-purple-500/30 text-purple-400 rounded-lg hover:bg-purple-500/10 transition flex items-center justify-center space-x-2"><Upload className="w-4 h-4" /><span>{t.gacha.uploadProof}</span></button>
-              <div className="mt-6 text-left"><h4 className="text-sm font-bold text-gray-500 mb-2">{t.gacha.rewardPool}</h4><div className="space-y-1.5">{gachaRewards.map((reward, i) => (<div key={i} className="flex justify-between text-sm"><span className="text-gray-400">{reward.prize[lang]}</span><span className="text-amber-500">{reward.chance}</span></div>))}</div></div>
+            <div className="bg-[#1a1a1a] rounded-3xl p-8 border border-amber-500/30 text-center relative overflow-hidden">
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 via-amber-500/10 to-purple-600/10" />
+              
+              {/* Gacha Wheel */}
+              <div className="relative w-44 h-44 mx-auto mb-8">
+                <div className={`absolute inset-0 bg-gradient-to-br from-purple-600 via-amber-500 to-purple-600 rounded-full ${activeGacha ? 'animate-spin' : ''}`} style={{animationDuration: '0.5s', filter: 'blur(2px)'}} />
+                <div className={`absolute inset-1 bg-gradient-to-br from-purple-600 to-amber-600 rounded-full ${activeGacha ? 'animate-spin' : ''}`} style={{animationDirection: 'reverse', animationDuration: '0.7s'}} />
+                <div className="absolute inset-2 bg-[#0a0a0a] rounded-full flex items-center justify-center shadow-2xl">
+                  {gachaResult ? (
+                    <div className="text-center animate-bounce">
+                      <div className="text-5xl mb-1">🎉</div>
+                      <div className="text-lg font-bold text-amber-400 px-2">{gachaResult}</div>
+                    </div>
+                  ) : (
+                    <span className="text-5xl">🎰</span>
+                  )}
+                </div>
+                {/* Pointer */}
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-12 border-t-amber-500" />
+              </div>
+              
+              <button onClick={handleSpin} disabled={activeGacha || (profile?.credits || 0) < 1} className="relative w-full py-4 bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600 rounded-xl font-bold text-lg hover:scale-[1.02] transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-amber-500/25 active:scale-95">
+                <span className="relative z-10 flex items-center justify-center space-x-2">
+                  {activeGacha ? <><Loader className="w-5 h-5 animate-spin" /><span>{t.gacha.spinning}</span></> : <><span>🎲</span><span>{t.gacha.spin}</span><span className="text-xs opacity-75">(1 {t.nav.credits})</span></>}
+                </span>
+              </button>
+              
+              <button onClick={() => setShowUpload(true)} className="w-full mt-4 py-3 border border-purple-500/30 text-purple-400 rounded-xl hover:bg-purple-500/10 transition flex items-center justify-center space-x-2">
+                <Upload className="w-4 h-4" /><span>{t.gacha.uploadProof}</span>
+              </button>
+              
+              <div className="mt-8 text-left">
+                <h4 className="text-sm font-bold text-gray-500 mb-3 flex items-center space-x-2"><Star className="w-4 h-4 text-amber-400" /><span>{t.gacha.rewardPool}</span></h4>
+                <div className="space-y-2 bg-[#0a0a0a] rounded-xl p-4">
+                  {gachaRewards.map((reward, i) => (
+                    <div key={i} className="flex justify-between items-center text-sm">
+                      <span className="text-gray-300 flex items-center space-x-2"><span>{reward.prize[lang]}</span></span>
+                      <span className="text-amber-500 font-bold">{reward.chance}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
-            {user && <div className="mt-6 max-w-sm mx-auto"><h3 className="text-lg font-bold mb-3">{t.gacha.mySubmissions}</h3><div className="space-y-2">{mySubmissions.length > 0 ? mySubmissions.map(s => (<div key={s.id} className="bg-[#1a1a1a] p-3 rounded-lg flex justify-between items-center"><div><div className="font-medium text-sm">{s.venue_name}</div><div className="text-xs text-gray-400">{s.amount} THB | {s.payment_type}</div></div><span className={`text-xs px-2 py-1 rounded ${s.status === 'pending' ? 'bg-yellow-900 text-yellow-400' : s.status === 'approved' ? 'bg-green-900 text-green-400' : 'bg-red-900 text-red-400'}`}>{s.status === 'pending' ? t.gacha.pendingApproval : s.status === 'approved' ? t.gacha.approved : t.gacha.rejected}</span></div>)) : <p className="text-gray-400 text-sm">{t.gacha.noSubmissions}</p>}</div></div>}
+            
+            {user && <div className="mt-8 max-w-sm mx-auto"><h3 className="text-lg font-bold mb-4 flex items-center space-x-2"><Package className="w-5 h-5 text-purple-400" /><span>{t.gacha.mySubmissions}</span></h3><div className="space-y-3">{mySubmissions.length > 0 ? mySubmissions.map(s => (<div key={s.id} className="bg-[#1a1a1a] p-4 rounded-xl flex justify-between items-center border border-gray-800 hover:border-purple-500/30 transition"><div><div className="font-medium">{s.venue_name}</div><div className="text-xs text-gray-400 flex items-center space-x-2"><span>{s.amount} THB</span><span className="text-gray-600">|</span><span>{s.payment_type}</span></div></div><span className={`text-xs px-3 py-1.5 rounded-lg font-medium ${s.status === 'pending' ? 'bg-yellow-900/50 text-yellow-400' : s.status === 'approved' ? 'bg-green-900/50 text-green-400' : 'bg-red-900/50 text-red-400'}`}>{s.status === 'pending' ? t.gacha.pendingApproval : s.status === 'approved' ? t.gacha.approved : t.gacha.rejected}</span></div>)) : <p className="text-gray-400 text-sm bg-[#1a1a1a] p-4 rounded-xl text-center">{t.gacha.noSubmissions}</p>}</div></div>}
           </div>
         </div>
       </section>
       {showUpload && <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"><div className="bg-[#1a1a1a] rounded-2xl p-6 w-full max-w-md border border-purple-500/30">{uploadSuccess ? <div className="text-center py-8"><CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" /><p className="text-lg text-green-500">{t.gacha.uploadSuccess}</p></div> : <><h2 className="text-2xl font-bold mb-6">{t.gacha.uploadProof}</h2><form onSubmit={handleUpload} className="space-y-4"><div><label className="block text-sm text-gray-400 mb-1">{t.gacha.selectVenue}</label><select value={uploadForm.venue} onChange={e => setUploadForm({...uploadForm, venue: e.target.value})} className="w-full p-3 bg-[#0a0a0a] rounded-lg border border-gray-700 focus:border-purple-500 outline-none" required><option value="">-- {t.gacha.selectVenue} --</option>{venues.map(v => <option key={v.id} value={v.name}>{v.name}</option>)}</select></div><div><label className="block text-sm text-gray-400 mb-1">{t.gacha.enterAmount}</label><input type="number" value={uploadForm.amount} onChange={e => setUploadForm({...uploadForm, amount: e.target.value})} className="w-full p-3 bg-[#0a0a0a] rounded-lg border border-gray-700 focus:border-purple-500 outline-none" required /></div><div><label className="block text-sm text-gray-400 mb-1">{t.gacha.paymentType}</label><select value={uploadForm.paymentType} onChange={e => setUploadForm({...uploadForm, paymentType: e.target.value})} className="w-full p-3 bg-[#0a0a0a] rounded-lg border border-gray-700 focus:border-purple-500 outline-none"><option value="receipt">{t.gacha.receipt}</option><option value="transfer">{t.gacha.transfer}</option><option value="card">{t.gacha.card}</option></select></div><div><label className="block text-sm text-gray-400 mb-1">{t.gacha.uploadImage}</label><div className="border-2 border-dashed border-gray-700 rounded-lg p-4 text-center cursor-pointer hover:border-purple-500 transition" onClick={() => fileInputRef.current?.click()}>{uploadImagePreview ? <><img src={uploadImagePreview} alt="Preview" className="max-h-32 mx-auto rounded" /><p className="text-xs text-green-400 mt-2">{t.gacha.selected}</p></> : <><ImageIcon className="w-8 h-8 text-gray-500 mx-auto mb-2" /><p className="text-sm text-gray-400">{t.gacha.uploadImage}</p></>}</div><input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageSelect} className="hidden" /></div><button type="submit" disabled={uploading} className="w-full py-3 bg-purple-600 rounded-lg font-bold hover:bg-purple-700 transition disabled:opacity-50">{uploading ? 'Uploading...' : t.gacha.uploadProof}</button></form></>}<button onClick={() => { setShowUpload(false); setUploadImage(null); setUploadImagePreview(null); }} className="absolute top-4 right-4 text-gray-400 hover:text-white"><X className="w-6 h-6" /></button></div></div>}
-      <section id="membership" className="py-12 px-4 bg-[#0f0f0f]">
+      <section id="membership" className="py-16 px-4 bg-gradient-to-b from-[#1a1a1a] to-[#0f0f0f]">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12"><h2 className="text-2xl md:text-3xl font-bold mb-2">{t.membership.title}</h2><p className="text-gray-400 text-sm">{t.membership.subtitle}</p></div>
-          <div className="grid md:grid-cols-3 gap-6">{tiers.map((tier, i) => (<div key={i} className={`relative bg-[#1a1a1a] rounded-2xl p-6 border-2 transition hover:scale-[1.02] ${tier.popular ? 'border-purple-500' : 'border-gray-800 hover:border-purple-500/50'}`}>{tier.popular && <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-purple-600 rounded-full text-xs font-bold">{t.membership.popular}</div>}<div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${tier.color} flex items-center justify-center mb-4`}><tier.icon className="w-7 h-7 text-white" /></div><h3 className="text-xl font-bold mb-1">{tier.name[lang]}</h3><div className="mb-4"><span className="text-3xl font-bold text-white">{tier.price}</span><span className="text-gray-500 text-sm">{tier.period[lang]}</span></div><button onClick={() => setSelectedTier(tier)} className={`w-full py-3.5 rounded-lg font-bold transition ${tier.popular ? 'bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-500 hover:to-purple-700' : 'border border-purple-500 text-purple-400 hover:bg-purple-500/10'}`}>{t.membership.getStarted}</button></div>))}</div>
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-600 to-amber-500 rounded-2xl mb-4 shadow-lg shadow-purple-500/25">
+              <Crown className="w-8 h-8 text-white" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-3 bg-gradient-to-r from-purple-400 to-amber-400 bg-clip-text text-transparent">{t.membership.title}</h2>
+            <p className="text-gray-400 text-sm max-w-md mx-auto">{t.membership.subtitle}</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">{tiers.map((tier, i) => (<div key={i} className={`relative bg-[#1a1a1a] rounded-3xl p-8 border-2 transition-all hover:scale-[1.02] ${tier.popular ? 'border-purple-500 shadow-2xl shadow-purple-500/20' : 'border-gray-800 hover:border-purple-500/50'}`}>{tier.popular && <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-gradient-to-r from-purple-600 to-amber-500 rounded-full text-xs font-bold shadow-lg">{t.membership.popular}</div>}<div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${tier.color} flex items-center justify-center mb-6 shadow-lg`}><tier.icon className="w-10 h-10 text-white" /></div><h3 className="text-2xl font-bold mb-2">{tier.name[lang]}</h3><div className="mb-6"><span className="text-4xl font-bold text-white">{tier.price}</span><span className="text-gray-500 text-sm ml-1">{tier.period[lang]}</span></div><button onClick={() => setSelectedTier(tier)} className={`w-full py-4 rounded-xl font-bold transition-all ${tier.popular ? 'bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-500 hover:to-purple-700 shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40' : 'border-2 border-purple-500/50 text-purple-400 hover:bg-purple-500/10'}`}>{t.membership.getStarted}</button></div>))}</div>
         </div>
       </section>
       <footer className="py-8 px-4 border-t border-gray-800">
