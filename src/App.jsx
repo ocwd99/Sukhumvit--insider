@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { supabase } from './supabase';
 import { useAuth } from './hooks/useAuth';
+import { useVenues } from './hooks/useVenues';
 import { AuthModal } from './components/common/AuthModal';
 import { PREFERENCE_LABELS, DECORATION_LEVELS, FRIENDLINESS_LEVELS } from './constants/preferences';
 
@@ -113,10 +114,6 @@ export default function SukhumvitInsider() {
     setLang(newLang);
     localStorage.setItem('sukhumvit_lang', newLang);
   };
-  
-  // 排序狀態
-  const [sortBy, setSortBy] = useState('price'); // price, rating, decoration, friendliness, location
-  const [searchQuery, setSearchQuery] = useState('');
   const [selectedVenue, setSelectedVenue] = useState(null);
   const { user, profile, admin, loading, signIn, signUp, signOut } = useAuth();
   const [showAuth, setShowAuth] = useState(false);
@@ -137,6 +134,16 @@ export default function SukhumvitInsider() {
   const [mySubmissions, setMySubmissions] = useState([]);
   const [showAllVenues, setShowAllVenues] = useState(false);
   const [categoryFilter, setCategoryFilter] = useState('all');
+  
+  // Use venues hook for filtering/sorting (but keep local state for now)
+  const { 
+    filteredVenues,
+    venuePackages: hookPackages,
+    loading: venuesLoading,
+    sortBy, setSortBy,
+    searchQuery, setSearchQuery
+  } = useVenues();
+  
   const [showAdmin, setShowAdmin] = useState(false);
   const [adminTab, setAdminTab] = useState('dashboard');
   const [editingVenue, setEditingVenue] = useState(null);
@@ -385,45 +392,6 @@ export default function SukhumvitInsider() {
 
   useEffect(() => { if (showAdmin) fetchAdminData(); }, [showAdmin]);
 
-  if (loading) return <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center"><Loader className="w-8 h-8 text-purple-500 animate-spin" /></div>;
-
-  // Sort venues: pinned first, then by selected sort option
-  const sortedVenues = [...venues].sort((a, b) => {
-    // Pinned always first
-    if (a.Pinned && !b.Pinned) return -1;
-    if (!a.Pinned && b.Pinned) return 1;
-    
-    // Sort by selected option
-    switch(sortBy) {
-      case 'price':
-        return a.drink_price - b.drink_price;
-      case 'rating':
-        return b.rating - a.rating;
-      case 'decoration':
-        const decorOrder = {'豪': 4, '高': 3, '中': 2, '普通': 1, '低': 0};
-        const aDecor = decorOrder[a.decoration_level] || 0;
-        const bDecor = decorOrder[b.decoration_level] || 0;
-        return bDecor - aDecor;
-      case 'friendliness':
-        const friendOrder = {'高': 3, '中': 2, '普通': 1, '低': 0};
-        const aFriend = friendOrder[a.friendliness] || 0;
-        const bFriend = friendOrder[b.friendliness] || 0;
-        return bFriend - aFriend;
-      case 'location':
-        return (a.location || '').localeCompare(b.location || '');
-      default:
-        return a.drink_price - b.drink_price;
-    }
-  });
-  // Filter by category and search
-  const filteredVenues = sortedVenues.filter(v => {
-    const matchesCategory = categoryFilter === 'all' || v.category === categoryFilter;
-    const matchesSearch = !searchQuery || 
-      (v.name && v.name.toLowerCase().includes(searchQuery.toLowerCase())) ||
-      (v.location && v.location.toLowerCase().includes(searchQuery.toLowerCase())) ||
-      (v.category && v.category.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesCategory && matchesSearch;
-  });
 
   if (showAdmin && admin) {
     return (
