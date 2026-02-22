@@ -11,6 +11,7 @@ import { useAuth } from './hooks/useAuth';
 import { useVenues } from './hooks/useVenues';
 import { useGacha, gachaRewards } from './hooks/useGacha';
 import { useStats } from './hooks/useStats';
+import { useEmergency } from './hooks/useEmergency';
 import { AuthModal } from './components/common/AuthModal';
 import { PREFERENCE_LABELS, DECORATION_LEVELS, FRIENDLINESS_LEVELS } from './constants/preferences';
 
@@ -124,12 +125,15 @@ export default function SukhumvitInsider() {
   // Use Stats hook for dynamic hero statistics
   const { verifiedMembers, totalVenues, satisfactionRate, loading: statsLoading } = useStats();
   
+  // Use Emergency hook
+  const { 
+    showEmergency, emergencyForm, emergencySuccess, loading: emergencyLoading,
+    submitRequest: handleEmergency, openModal: openEmergency, closeModal: closeEmergency, updateForm
+  } = useEmergency({ user });
+  
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [venues, setVenues] = useState([]);
   const [venuePackages, setVenuePackages] = useState({});
-  const [showEmergency, setShowEmergency] = useState(false);
-  const [emergencyForm, setEmergencyForm] = useState({ location: '', description: '' });
-  const [emergencySuccess, setEmergencySuccess] = useState(false);
   const [showUpload, setShowUpload] = useState(false);
   const [uploadForm, setUploadForm] = useState({ venue: '', amount: '', paymentType: 'receipt' });
   const [uploadImage, setUploadImage] = useState(null);
@@ -287,15 +291,6 @@ export default function SukhumvitInsider() {
     } finally {
       setUploading(false);
     }
-  }
-
-  async function handleEmergency(e) {
-    e.preventDefault();
-    if (!user) { setShowAuth(true); return; }
-    const { error } = await supabase.from('emergency_requests').insert({ user_id: user.id, location: emergencyForm.location, description: emergencyForm.description, status: 'pending' });
-    if (error) { alert('Error: ' + error.message); return; }
-    setEmergencySuccess(true);
-    setTimeout(() => { setShowEmergency(false); setEmergencySuccess(false); setEmergencyForm({ location: '', description: '' }); }, 3000);
   }
 
   async function handleApproveReceipt(id) {
@@ -622,7 +617,7 @@ export default function SukhumvitInsider() {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/10 rounded-full blur-3xl" />
                 <h3 className="text-lg font-bold mb-2 flex items-center space-x-2 relative z-10"><Heart className="w-5 h-5 text-red-500 animate-pulse" /><span>{t.dashboard.emergency}</span></h3>
                 <p className="text-gray-400 text-sm mb-4 relative z-10">{t.dashboard.emergencyDesc}</p>
-                <button onClick={() => setShowEmergency(true)} className="w-full py-3.5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 rounded-xl font-bold transition-all flex items-center justify-center space-x-2 shadow-lg shadow-red-500/25 hover:shadow-red-500/40 relative z-10">
+                <button onClick={openEmergency} className="w-full py-3.5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 rounded-xl font-bold transition-all flex items-center justify-center space-x-2 shadow-lg shadow-red-500/25 hover:shadow-red-500/40 relative z-10">
                   <Phone className="w-4 h-4" /><span>{t.dashboard.activate}</span>
                 </button>
               </div>
@@ -641,12 +636,12 @@ export default function SukhumvitInsider() {
                 <div><label className="block text-sm text-gray-400 mb-2">{t.emergency.name}</label><input type="text" placeholder={t.emergency.name} className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none" required /></div>
                 <div><label className="block text-sm text-gray-400 mb-2">{t.emergency.phone}</label><input type="tel" placeholder="+66 xxx xxx xxxx" className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none" required /></div>
               </div>
-              <div><label className="block text-sm text-gray-400 mb-2">{t.emergency.location}</label><input type="text" value={emergencyForm.location} onChange={e => setEmergencyForm({...emergencyForm, location: e.target.value})} placeholder={t.emergency.location} className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none" required /></div>
-              <div><label className="block text-sm text-gray-400 mb-2">{t.emergency.description}</label><textarea value={emergencyForm.description} onChange={e => setEmergencyForm({...emergencyForm, description: e.target.value})} placeholder={t.emergency.description} className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none h-28 resize-none" required /></div>
+              <div><label className="block text-sm text-gray-400 mb-2">{t.emergency.location}</label><input type="text" value={emergencyForm.location} onChange={e => updateForm('location', e.target.value)} placeholder={t.emergency.location} className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none" required /></div>
+              <div><label className="block text-sm text-gray-400 mb-2">{t.emergency.description}</label><textarea value={emergencyForm.description} onChange={e => updateForm('description', e.target.value)} placeholder={t.emergency.description} className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none h-28 resize-none" required /></div>
               <button type="submit" className="w-full py-4 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 rounded-xl font-bold transition-all shadow-lg shadow-red-500/25">{t.emergency.submit}</button>
             </form>
           </>}
-          <button onClick={() => setShowEmergency(false)} className="absolute top-4 right-4 text-gray-500 hover:text-white p-2"><X className="w-5 h-5" /></button>
+          <button onClick={closeEmergency} className="absolute top-4 right-4 text-gray-500 hover:text-white p-2"><X className="w-5 h-5" /></button>
         </div>
       </div>}
 
