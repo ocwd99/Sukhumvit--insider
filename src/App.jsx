@@ -12,6 +12,7 @@ import { useVenues } from './hooks/useVenues';
 import { useGacha, gachaRewards } from './hooks/useGacha';
 import { useStats } from './hooks/useStats';
 import { useEmergency } from './hooks/useEmergency';
+import { useUpload } from './hooks/useUpload';
 import { VenueList } from './components/features/Dashboard/VenueList';
 import { VenueCard } from './components/features/Dashboard/VenueCard';
 import { AuthModal } from './components/common/AuthModal';
@@ -136,15 +137,15 @@ export default function SukhumvitInsider() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [venues, setVenues] = useState([]);
   const [venuePackages, setVenuePackages] = useState({});
-  const [showUpload, setShowUpload] = useState(false);
-  const [uploadForm, setUploadForm] = useState({ venue: '', amount: '', paymentType: 'receipt' });
-  const [uploadImage, setUploadImage] = useState(null);
-  const [uploadImagePreview, setUploadImagePreview] = useState(null);
-  const [uploading, setUploading] = useState(false);
-  const [uploadSuccess, setUploadSuccess] = useState(false);
   const [mySubmissions, setMySubmissions] = useState([]);
   const [showAllVenues, setShowAllVenues] = useState(false);
   const [categoryFilter, setCategoryFilter] = useState('all');
+  
+  // Use upload hook
+  const { 
+    uploadForm, uploadImage, uploadImagePreview, uploading, uploadSuccess, showUpload,
+    fileInputRef, handleUpload, handleImageSelect, closeModal: closeUpload, openModal: openUpload, updateForm: updateUploadForm
+  } = useUpload({ user, venues, onSuccess: fetchMySubmissions });
   
   // Use venues hook for filtering/sorting (but keep local state for now)
   const { 
@@ -171,7 +172,6 @@ export default function SukhumvitInsider() {
   const [showTerms, setShowTerms] = useState(false);
   const [showContact, setShowContact] = useState(false);
   const [selectedTier, setSelectedTier] = useState(null);
-  const fileInputRef = useRef(null);
 
   const t = translations[lang];
 
@@ -216,83 +216,6 @@ export default function SukhumvitInsider() {
   async function handleLogout() { 
     await signOut(); 
     setShowAdmin(false); 
-  }
-
-
-  function handleImageSelect(e) {
-    const file = e.target.files[0];
-    if (file) {
-      setUploadImage(file);
-      const reader = new FileReader();
-      reader.onloadend = () => setUploadImagePreview(reader.result);
-      reader.readAsDataURL(file);
-    }
-  }
-
-  async function handleUpload(e) {
-    e.preventDefault();
-    if (!user) { setShowAuth(true); return; }
-    if (!uploadForm.venue || !uploadForm.amount) { alert('Please fill in all fields'); return; }
-
-    setUploading(true);
-    let imageUrl = null;
-
-    try {
-      // Try to upload image to storage
-      if (uploadImage) {
-        const fileExt = uploadImage.name.split('.').pop();
-        const fileName = `${user.id}/${Date.now()}.${fileExt}`;
-        try {
-          const { data: uploadData, error: uploadError } = await supabase.storage.from('payment-receipts').upload(fileName, uploadImage);
-          if (!uploadError && uploadData) {
-            imageUrl = uploadData.path;
-          }
-        } catch (storageErr) {
-          console.log('Storage error (ignoring):', storageErr.message);
-          // Continue without image URL
-        }
-      }
-
-      // Try to insert into database
-      try {
-        const { error } = await supabase.from('payment_receipts').insert({
-          user_id: user.id,
-          venue_name: uploadForm.venue,
-          amount: parseInt(uploadForm.amount),
-          payment_type: uploadForm.paymentType,
-          image_url: imageUrl,
-          status: 'pending'
-        });
-
-        if (error) throw error;
-      } catch (dbErr) {
-        // For demo purposes, simulate success even without database
-        console.log('Database error (simulating success):', dbErr.message);
-      }
-
-      // Always show success for demo
-      setUploadSuccess(true);
-      fetchMySubmissions();
-      setTimeout(() => {
-        setShowUpload(false);
-        setUploadSuccess(false);
-        setUploadForm({ venue: '', amount: '', paymentType: 'receipt' });
-        setUploadImage(null);
-        setUploadImagePreview(null);
-      }, 2000);
-    } catch (err) {
-      alert('上傳成功！積分將在審核後發放。');
-      setUploadSuccess(true);
-      setTimeout(() => {
-        setShowUpload(false);
-        setUploadSuccess(false);
-        setUploadForm({ venue: '', amount: '', paymentType: 'receipt' });
-        setUploadImage(null);
-        setUploadImagePreview(null);
-      }, 2000);
-    } finally {
-      setUploading(false);
-    }
   }
 
   async function handleApproveReceipt(id) {
@@ -890,7 +813,7 @@ export default function SukhumvitInsider() {
                 </span>
               </button>
               
-              <button type="button" onClick={() => { console.log('Upload clicked'); setShowUpload(true); }} className="w-full mt-4 py-3 border border-purple-500/30 text-purple-400 rounded-xl hover:bg-purple-500/10 transition flex items-center justify-center space-x-2">
+              <button type="button" onClick={() => { console.log('Upload clicked'); openUpload(); }} className="w-full mt-4 py-3 border border-purple-500/30 text-purple-400 rounded-xl hover:bg-purple-500/10 transition flex items-center justify-center space-x-2">
                 <Upload className="w-4 h-4" /><span>{t.gacha.uploadProof}</span>
               </button>
               
@@ -911,7 +834,7 @@ export default function SukhumvitInsider() {
           </div>
         </div>
       </section>
-      {showUpload && <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"><div className="bg-[#1a1a1a] rounded-2xl p-6 w-full max-w-md border border-purple-500/30">{uploadSuccess ? <div className="text-center py-8"><CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" /><p className="text-lg text-green-500">{t.gacha.uploadSuccess}</p></div> : <><h2 className="text-2xl font-bold mb-6">{t.gacha.uploadProof}</h2><form onSubmit={handleUpload} className="space-y-4"><div><label className="block text-sm text-gray-400 mb-1">{t.gacha.selectVenue}</label><select value={uploadForm.venue} onChange={e => setUploadForm({...uploadForm, venue: e.target.value})} className="w-full p-3 bg-[#0a0a0a] rounded-lg border border-gray-700 focus:border-purple-500 outline-none" required><option value="">-- {t.gacha.selectVenue} --</option>{venues.map(v => <option key={v.id} value={v.name}>{v.name}</option>)}</select></div><div><label className="block text-sm text-gray-400 mb-1">{t.gacha.enterAmount}</label><input type="number" value={uploadForm.amount} onChange={e => setUploadForm({...uploadForm, amount: e.target.value})} className="w-full p-3 bg-[#0a0a0a] rounded-lg border border-gray-700 focus:border-purple-500 outline-none" required /></div><div><label className="block text-sm text-gray-400 mb-1">{t.gacha.paymentType}</label><select value={uploadForm.paymentType} onChange={e => setUploadForm({...uploadForm, paymentType: e.target.value})} className="w-full p-3 bg-[#0a0a0a] rounded-lg border border-gray-700 focus:border-purple-500 outline-none"><option value="receipt">{t.gacha.receipt}</option><option value="transfer">{t.gacha.transfer}</option><option value="card">{t.gacha.card}</option></select></div><div><label className="block text-sm text-gray-400 mb-1">{t.gacha.uploadImage}</label><div className="border-2 border-dashed border-gray-700 rounded-lg p-4 text-center cursor-pointer hover:border-purple-500 transition" onClick={() => fileInputRef.current?.click()}>{uploadImagePreview ? <><img src={uploadImagePreview} alt="Preview" className="max-h-32 mx-auto rounded" /><p className="text-xs text-green-400 mt-2">{t.gacha.selected}</p></> : <><ImageIcon className="w-8 h-8 text-gray-500 mx-auto mb-2" /><p className="text-sm text-gray-400">{t.gacha.uploadImage}</p></>}</div><input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageSelect} className="hidden" /></div><button type="submit" disabled={uploading} className="w-full py-3 bg-purple-600 rounded-lg font-bold hover:bg-purple-700 transition disabled:opacity-50">{uploading ? 'Uploading...' : t.gacha.uploadProof}</button></form></>}<button onClick={() => { setShowUpload(false); setUploadImage(null); setUploadImagePreview(null); }} className="absolute top-4 right-4 text-gray-400 hover:text-white"><X className="w-6 h-6" /></button></div></div>}
+      {showUpload && <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"><div className="bg-[#1a1a1a] rounded-2xl p-6 w-full max-w-md border border-purple-500/30">{uploadSuccess ? <div className="text-center py-8"><CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" /><p className="text-lg text-green-500">{t.gacha.uploadSuccess}</p></div> : <><h2 className="text-2xl font-bold mb-6">{t.gacha.uploadProof}</h2><form onSubmit={handleUpload} className="space-y-4"><div><label className="block text-sm text-gray-400 mb-1">{t.gacha.selectVenue}</label><select value={uploadForm.venue} onChange={e => updateUploadForm('venue', e.target.value)} className="w-full p-3 bg-[#0a0a0a] rounded-lg border border-gray-700 focus:border-purple-500 outline-none" required><option value="">-- {t.gacha.selectVenue} --</option>{venues.map(v => <option key={v.id} value={v.name}>{v.name}</option>)}</select></div><div><label className="block text-sm text-gray-400 mb-1">{t.gacha.enterAmount}</label><input type="number" value={uploadForm.amount} onChange={e => updateUploadForm('amount', e.target.value)} className="w-full p-3 bg-[#0a0a0a] rounded-lg border border-gray-700 focus:border-purple-500 outline-none" required /></div><div><label className="block text-sm text-gray-400 mb-1">{t.gacha.paymentType}</label><select value={uploadForm.paymentType} onChange={e => updateUploadForm('paymentType', e.target.value)} className="w-full p-3 bg-[#0a0a0a] rounded-lg border border-gray-700 focus:border-purple-500 outline-none"><option value="receipt">{t.gacha.receipt}</option><option value="transfer">{t.gacha.transfer}</option><option value="card">{t.gacha.card}</option></select></div><div><label className="block text-sm text-gray-400 mb-1">{t.gacha.uploadImage}</label><div className="border-2 border-dashed border-gray-700 rounded-lg p-4 text-center cursor-pointer hover:border-purple-500 transition" onClick={() => fileInputRef.current?.click()}>{uploadImagePreview ? <><img src={uploadImagePreview} alt="Preview" className="max-h-32 mx-auto rounded" /><p className="text-xs text-green-400 mt-2">{t.gacha.selected}</p></> : <><ImageIcon className="w-8 h-8 text-gray-500 mx-auto mb-2" /><p className="text-sm text-gray-400">{t.gacha.uploadImage}</p></>}</div><input ref={fileInputRef} type="file" accept="image/*" onChange={handleImageSelect} className="hidden" /></div><button type="submit" disabled={uploading} className="w-full py-3 bg-purple-600 rounded-lg font-bold hover:bg-purple-700 transition disabled:opacity-50">{uploading ? 'Uploading...' : t.gacha.uploadProof}</button></form></>}<button onClick={closeUpload} className="absolute top-4 right-4 text-gray-400 hover:text-white"><X className="w-6 h-6" /></button></div></div>}
       <section id="membership" className="py-16 px-4 bg-gradient-to-b from-[#1a1a1a] to-[#0f0f0f]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
