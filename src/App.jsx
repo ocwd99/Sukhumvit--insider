@@ -9,6 +9,7 @@ import {
 import { supabase } from './supabase';
 import { useAuth } from './hooks/useAuth';
 import { useVenues } from './hooks/useVenues';
+import { useGacha, gachaRewards } from './hooks/useGacha';
 import { AuthModal } from './components/common/AuthModal';
 import { PREFERENCE_LABELS, DECORATION_LEVELS, FRIENDLINESS_LEVELS } from './constants/preferences';
 
@@ -96,13 +97,6 @@ const tiers = [
   { name: { en: 'The Black Card', zh: '黑卡', ja: 'ブラックカード' }, price: '$1,000', period: { en: '/month', zh: '/月', ja: '/月' }, icon: Crown, color: 'from-yellow-500 to-yellow-700', popular: false, tier: 'black' }
 ];
 
-const gachaRewards = [
-  { prize: { en: 'Free Drink Coupon', zh: '免費飲料券', ja: '無料ドリンク券' }, chance: '35%' },
-  { prize: { en: 'VIP Upgrade', zh: 'VIP升級', ja: 'VIPアップグレード' }, chance: '15%' },
-  { prize: { en: '500 THB Credit', zh: '500泰銖積分', ja: '500THBクレジット' }, chance: '10%' },
-  { prize: { en: 'Private Tour', zh: '私人導覽', ja: 'プライベートツアー' }, chance: '5%' },
-  { prize: { en: 'Mystery Box', zh: '神秘寶箱', ja: '謎のボックス' }, chance: '35%' },
-];
 
 export default function SukhumvitInsider() {
   // 讀取保存的語言偏好，否則預設為英文
@@ -115,10 +109,17 @@ export default function SukhumvitInsider() {
     localStorage.setItem('sukhumvit_lang', newLang);
   };
   const [selectedVenue, setSelectedVenue] = useState(null);
-  const { user, profile, admin, loading, signIn, signUp, signOut } = useAuth();
+  const { user, profile, admin, loading: authLoading, signIn, signUp, signOut, updateCredits } = useAuth();
   const [showAuth, setShowAuth] = useState(false);
-  const [activeGacha, setActiveGacha] = useState(false);
-  const [gachaResult, setGachaResult] = useState(null);
+  
+  // Use Gacha hook
+  const { activeGacha, gachaResult, spin: handleSpin, resetResult } = useGacha({ 
+    user, 
+    profile, 
+    updateCredits,
+    lang 
+  });
+  
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [venues, setVenues] = useState([]);
   const [venuePackages, setVenuePackages] = useState({});
@@ -207,37 +208,6 @@ export default function SukhumvitInsider() {
     setShowAdmin(false); 
   }
 
-  async function handleSpin() {
-    if (!user) { setShowAuth(true); return; }
-    if (!profile || profile.credits < 1) { alert('No credits left! Please upload receipt to get more credits.'); return; }
-    
-    const newCredits = profile.credits - 1;
-    setProfile({ ...profile, credits: newCredits });
-    setActiveGacha(true);
-    
-    // Try to update credits in database
-    try {
-      await supabase.from('profiles').update({ credits: newCredits }).eq('id', user.id);
-    } catch (err) {
-      console.log('Credits update error (continuing):', err.message);
-    }
-    
-    setTimeout(() => {
-      const rand = Math.random();
-      let cumulative = 0, result = '';
-      for (const reward of gachaRewards) { cumulative += parseFloat(reward.chance) / 100; if (rand < cumulative) { result = reward.prize[lang]; break; } }
-      if (!result) result = gachaRewards[0].prize[lang]; // Fallback to first reward
-      setGachaResult(result);
-      setActiveGacha(false);
-      
-      // Try to save result
-      try {
-        supabase.from('gacha_results').insert({ user_id: user.id, reward: result });
-      } catch (err) {
-        console.log('Gacha result save error:', err.message);
-      }
-    }, 2000);
-  }
 
   function handleImageSelect(e) {
     const file = e.target.files[0];
