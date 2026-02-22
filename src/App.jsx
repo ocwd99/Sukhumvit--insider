@@ -7,29 +7,9 @@ import {
   Map, Globe, Phone, Mail, ExternalLink, FileText, Search
 } from 'lucide-react';
 import { supabase } from './supabase';
-
-const PREFERENCE_LABELS = {
-  A: { en: 'Nightclub', zh: '夜店', ja: 'クラブ' },
-  B: { en: 'Bar', zh: '酒吧', ja: 'バー' },
-  C: { en: 'Lounge', zh: 'Lounge', ja: 'ラウンジ' },
-  D: { en: 'Pub', zh: '酒吧', ja: 'パブ' },
-  E: { en: 'Karaoke', zh: '卡拉OK', ja: 'カラオケ' },
-  F: { en: 'Rooftop', zh: '高空酒吧', ja: 'ルーフトップ' },
-  G: { en: 'Club', zh: '會員制酒吧', ja: '会員制クラブ' }
-};
-
-const DECORATION_LEVELS = [
-  { value: '老舊', label: { en: 'Aged', zh: '老舊', ja: '古い' } },
-  { value: '普通', label: { en: 'Standard', zh: '普通', ja: '普通' } },
-  { value: '中上', label: { en: 'Good', zh: '中上', ja: '良い' } },
-  { value: '奢華', label: { en: 'Luxury', zh: '奢華', ja: '豪華' } }
-];
-
-const FRIENDLINESS_LEVELS = [
-  { value: '低', label: { en: 'Low', zh: '低', ja: '低' } },
-  { value: '中', label: { en: 'Medium', zh: '中', ja: '中' } },
-  { value: '高', label: { en: 'High', zh: '高', ja: '高' } }
-];
+import { useAuth } from './hooks/useAuth';
+import { AuthModal } from './components/common/AuthModal';
+import { PREFERENCE_LABELS, DECORATION_LEVELS, FRIENDLINESS_LEVELS } from './constants/preferences';
 
 const translations = {
   en: {
@@ -138,19 +118,13 @@ export default function SukhumvitInsider() {
   const [sortBy, setSortBy] = useState('price'); // price, rating, decoration, friendliness, location
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedVenue, setSelectedVenue] = useState(null);
-  const [user, setUser] = useState(null);
-  const [profile, setProfile] = useState(null);
-  const [admin, setAdmin] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { user, profile, admin, loading, signIn, signUp, signOut } = useAuth();
+  const [showAuth, setShowAuth] = useState(false);
   const [activeGacha, setActiveGacha] = useState(false);
   const [gachaResult, setGachaResult] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [venues, setVenues] = useState([]);
   const [venuePackages, setVenuePackages] = useState({});
-  const [showAuth, setShowAuth] = useState(false);
-  const [authMode, setAuthMode] = useState('login');
-  const [authForm, setAuthForm] = useState({ email: '', password: '', confirmPassword: '', preferences: [] });
-  const [authError, setAuthError] = useState('');
   const [showEmergency, setShowEmergency] = useState(false);
   const [emergencyForm, setEmergencyForm] = useState({ location: '', description: '' });
   const [emergencySuccess, setEmergencySuccess] = useState(false);
@@ -183,28 +157,10 @@ export default function SukhumvitInsider() {
 
   const t = translations[lang];
 
-  useEffect(() => { checkUser(); fetchVenues(); }, []);
+  useEffect(() => { fetchVenues(); }, []);
   useEffect(() => { if (user) fetchMySubmissions(); }, [user]);
 
-  async function checkUser() {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (session?.user) {
-      setUser(session.user);
-      await fetchProfile(session.user.id);
-      await checkAdmin(session.user.id);
-    }
-    setLoading(false);
-  }
-
-  async function fetchProfile(userId) {
-    const { data } = await supabase.from('profiles').select('*').eq('id', userId).single();
-    if (data) setProfile(data);
-  }
-
-  async function checkAdmin(userId) {
-    const { data } = await supabase.from('admins').select('*').eq('id', userId).single();
-    if (data) setAdmin(data);
-  }
+  // Auth handlers using useAuth hook
 
   async function fetchVenues() {
     const { data } = await supabase.from('venues').select('*').order('drink_price', { ascending: true });
@@ -238,40 +194,11 @@ export default function SukhumvitInsider() {
     setAdminStats(s => ({ ...s, totalVenues: venues.length }));
   }
 
-  async function handleAuth(e) {
-    e.preventDefault();
-    setAuthError('');
-    if (authMode === 'signup' && authForm.password !== authForm.confirmPassword) { setAuthError('Passwords do not match'); return; }
-    if (authMode === 'signup' && authForm.preferences.length === 0) { setAuthError('Please select at least one preference'); return; }
-    try {
-      if (authMode === 'signup') {
-        const { data, error } = await supabase.auth.signUp({ email: authForm.email, password: authForm.password });
-        if (error) throw error;
-        if (data.user) await supabase.from('profiles').insert({ id: data.user.id, email: authForm.email, credits: 50, preferences: authForm.preferences });
-        alert('Check your email for confirmation!');
-      } else {
-        const { data, error } = await supabase.auth.signInWithPassword({ email: authForm.email, password: authForm.password });
-        
-        // Give 50 credits on login for testing
-        if (data.user) {
-          try {
-            const { data: existingProfile } = await supabase.from('profiles').select('credits').eq('id', data.user.id).single();
-            const newCredits = (existingProfile?.credits || 0) + 50;
-            await supabase.from('profiles').update({ credits: newCredits }).eq('id', data.user.id);
-          } catch (e) {
-            console.log('Credit update error:', e.message);
-          }
-        }
-        if (error) throw error;
-        setUser(data.user);
-        await fetchProfile(data.user.id);
-        await checkAdmin(data.user.id);
-        setShowAuth(false);
-      }
-    } catch (err) { setAuthError(err.message); }
+  // Auth handlers - using useAuth hook
+  async function handleLogout() { 
+    await signOut(); 
+    setShowAdmin(false); 
   }
-
-  async function handleLogout() { await supabase.auth.signOut(); setUser(null); setProfile(null); setAdmin(null); setShowAdmin(false); }
 
   async function handleSpin() {
     if (!user) { setShowAuth(true); return; }
@@ -672,7 +599,14 @@ export default function SukhumvitInsider() {
         </div>
         {mobileMenuOpen && <div className="md:hidden bg-[#0a0a0a] border-t border-purple-500/20 px-4 py-4 space-y-3">{user && <div className="flex items-center justify-between py-2 text-amber-500"><span>{t.nav.credits}: {profile?.credits || 0}</span></div>}<a href="#dashboard" className="block py-2" onClick={() => setMobileMenuOpen(false)}>{t.nav.dashboard}</a><a href="#membership" className="block py-2" onClick={() => setMobileMenuOpen(false)}>{t.nav.membership}</a><a href="#gacha" className="block py-2" onClick={() => setMobileMenuOpen(false)}>{t.nav.gacha}</a>{admin && <button onClick={() => { setShowAdmin(true); setMobileMenuOpen(false); }} className="block py-2 text-red-400">{t.nav.admin}</button>}{user ? <button onClick={handleLogout} className="w-full py-3 border border-red-500/50 text-red-500 rounded">{t.nav.logout}</button> : <button onClick={() => { setShowAuth(true); setMobileMenuOpen(false); }} className="w-full py-3 bg-purple-600 rounded">{t.nav.login}</button>}</div>}
       </nav>
-      {showAuth && <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"><div className="bg-[#1a1a1a] rounded-2xl p-6 w-full max-w-md border border-purple-500/30"><h2 className="text-2xl font-bold mb-6">{authMode === 'login' ? t.auth.login : t.auth.signup}</h2><form onSubmit={handleAuth} className="space-y-4"><div><label className="block text-sm text-gray-400 mb-1">{t.auth.email}</label><input type="email" value={authForm.email} onChange={e => setAuthForm({...authForm, email: e.target.value})} className="w-full p-3 bg-[#0a0a0a] rounded-lg border border-gray-700 focus:border-purple-500 outline-none" required /></div><div><label className="block text-sm text-gray-400 mb-1">{t.auth.password}</label><input type="password" value={authForm.password} onChange={e => setAuthForm({...authForm, password: e.target.value})} className="w-full p-3 bg-[#0a0a0a] rounded-lg border border-gray-700 focus:border-purple-500 outline-none" required /></div>{authMode === 'signup' && (<><div><label className="block text-sm text-gray-400 mb-1">{t.auth.confirmPassword}</label><input type="password" value={authForm.confirmPassword} onChange={e => setAuthForm({...authForm, confirmPassword: e.target.value})} className="w-full p-3 bg-[#0a0a0a] rounded-lg border border-gray-700 focus:border-purple-500 outline-none" required /></div><div><label className="block text-sm text-gray-400 mb-2">{t.auth.selectPreferences}</label><div className="flex flex-wrap gap-2">{Object.keys(PREFERENCE_LABELS).map(p => <button key={p} type="button" onClick={() => setAuthForm({...authForm, preferences: authForm.preferences.includes(p) ? authForm.preferences.filter(x => x !== p) : [...authForm.preferences, p]})} className={`px-3 py-1 rounded border ${authForm.preferences.includes(p) ? 'bg-purple-600 border-purple-500' : 'border-gray-700'}`}>{p} - {PREFERENCE_LABELS[p][lang]}</button>)}</div></div></>)}{authError && <p className="text-red-500 text-sm">{authError}</p>}<button type="submit" className="w-full py-3 bg-purple-600 rounded-lg font-bold hover:bg-purple-700 transition">{authMode === 'login' ? t.auth.login : t.auth.signup}</button></form><p className="text-center text-gray-400 text-sm mt-4">{authMode === 'login' ? t.auth.noAccount : t.auth.hasAccount}<button onClick={() => setAuthMode(authMode === 'login' ? 'signup' : 'login')} className="text-purple-400 ml-1">{authMode === 'login' ? t.auth.signup : t.auth.login}</button></p><button onClick={() => setShowAuth(false)} className="absolute top-4 right-4 text-gray-400 hover:text-white"><X className="w-6 h-6" /></button></div></div>}
+      {showAuth && (
+        <AuthModal 
+          isOpen={showAuth} 
+          onClose={() => setShowAuth(false)} 
+          onLogin={signIn}
+          onSignup={signUp}
+        />
+      )}
       <section className="relative pt-28 pb-20 px-4 overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 via-[#0a0a0a] to-[#0a0a0a]" />
