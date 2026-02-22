@@ -39,7 +39,16 @@ const translations = {
     dashboard: { title: 'Intelligence Dashboard', priceIndex: 'Bangkok Venue Sort', sortBy: 'Sort by', search: 'Search venues...', updated: 'Updated: Live', trustProtocol: 'Trust Protocol Status', venueVerify: 'Venue Verification', priceSync: 'Price Index Sync', fieldAgent: 'Field Agent Network', emergency: '72-Hour Health Concierge', emergencyDesc: 'Urgent medical assistance, hospital navigation, and emergency translation services.', activate: 'Activate Emergency Protocol', viewAll: 'View All Venues', yourCredits: 'Your Credits', decoration: 'Decoration', friendliness: 'Friendliness', packages: 'Packages', sortPrice: 'Price', sortRating: 'Rating', sortDecoration: 'Decoration', sortFriendliness: 'Friendliness', sortLocation: 'Location', locked: 'Locked', unlockWith: 'Unlock with', venueDetails: 'Venue Details', address: 'Address', category: 'Category', riskLevel: 'Risk Level', description: 'Description', packages2: 'Packages', noDescription: 'No description', close: 'Close' },
     gacha: { title: 'The Sukhumvit Casino', subtitle: 'Upload payment proof → Get credits → Spin for rewards', spin: 'SPIN NOW', spinning: 'Spinning...', rewardPool: 'Reward Pool', uploadProof: 'Upload Payment Proof', uploadSuccess: 'Upload successful! Waiting for approval.', selectVenue: 'Select Venue', enterAmount: 'Amount (THB)', paymentType: 'Payment Type', receipt: 'Receipt', transfer: 'Transfer', card: 'Credit Card', pendingApproval: 'Pending approval', approved: 'Approved', rejected: 'Rejected', mySubmissions: 'My Submissions', noSubmissions: 'No submissions yet', uploadImage: 'Upload Image', selected: 'Selected' },
     membership: { title: 'Membership Tiers', subtitle: 'Choose your intelligence level', popular: 'MOST POPULAR', getStarted: 'Get Started', current: 'Current Plan', selectTier: 'Select Plan', features: 'Features', contactUs: 'Contact us to purchase' },
-    emergency: { title: 'Emergency Request', success: 'Request submitted! We will contact you soon.' },
+    emergency: { 
+      title: 'Emergency Request', 
+      success: 'Request submitted! We will contact you soon.',
+      fillInfo: 'Please fill in the following information',
+      name: 'Your Name',
+      phone: 'Phone Number',
+      location: 'Your Location',
+      description: 'Describe your emergency',
+      submit: 'Request Assistance'
+    },
     venues: { title: 'All Venues', filter: 'Filter by category', all: 'All', price: 'Price', rating: 'Rating', risk: 'Risk' },
     admin: { title: 'Admin Panel', dashboard: 'Dashboard', venues: 'Manage Venues', users: 'Users', receipts: 'Receipts', approvals: 'Approvals', editVenue: 'Edit Venue', addVenue: 'Add Venue', save: 'Save', cancel: 'Cancel', approve: 'Approve', reject: 'Reject', totalUsers: 'Total Users', totalVenues: 'Total Venues', pendingReceipts: 'Pending Receipts', approvedReceipts: 'Approved', packages: 'Packages', addPackage: 'Add Package', packageName: 'Package Name', duration: 'Duration (min)', price: 'Price (THB)', description: 'Description', notes: 'Admin Notes', noPackages: 'No packages yet', noNotes: 'No notes yet', pin: 'Pin to Top', Pinned: 'Pinned', unpin: 'Unpin' },
     footer: { privacy: 'Privacy', terms: 'Terms', contact: 'Contact', rights: 'All rights reserved.' },
@@ -55,7 +64,16 @@ const translations = {
     dashboard: { title: '情報儀表板', priceIndex: '曼谷店家排序', sortBy: '排序方式', search: '搜尋店家...', updated: '更新：即時', trustProtocol: '信任協議狀態', venueVerify: '場地驗證', priceSync: '價格指數同步', fieldAgent: '特派員網絡', emergency: '72小時健康管家', emergencyDesc: '緊急醫療協助、醫院導航、緊急翻譯服務。', activate: '啟動緊急協議', viewAll: '查看全部場地', yourCredits: '你的積分', decoration: '裝潢', friendliness: '親和力', packages: '套餐', sortPrice: '價格', sortRating: '評分', sortDecoration: '裝潢', sortFriendliness: '親和力', sortLocation: '地點', locked: '鎖定', unlockWith: '解鎖', venueDetails: '店家詳情', address: '地址', category: '分類', riskLevel: '風險等級', description: '說明', packages2: '套餐', noDescription: '無說明', close: '關閉' },
     gacha: { title: '暹羅賭場', subtitle: '上傳付款證明 → 獲得積分 → 轉蛋抽獎', spin: '立即轉蛋', spinning: '轉蛋中...', rewardPool: '獎勵池', uploadProof: '上傳付款證明', uploadSuccess: '上傳成功！等待審核中。', selectVenue: '選擇場地', enterAmount: '金額 (THB)', paymentType: '付款類型', receipt: '收據', transfer: '轉帳', card: '刷卡', pendingApproval: '等待審核', approved: '已通過', rejected: '已拒絕', mySubmissions: '我的提交', noSubmissions: '尚未提交', uploadImage: '上傳圖片', selected: '已選擇' },
     membership: { title: '會員方案', subtitle: '選擇你的情報級別', popular: '熱門', getStarted: '立即開始', current: '目前方案', selectTier: '選擇方案', features: '功能特色', contactUs: '聯繫我們購買' },
-    emergency: { title: '緊急請求', success: '請求已提交！我們會儘快聯繫你。' },
+    emergency: { 
+      title: '緊急請求', 
+      success: '請求已提交！我們會儘快聯繫你。',
+      fillInfo: '請填寫以下資訊',
+      name: '您的姓名',
+      phone: '聯絡電話',
+      location: '所在位置',
+      description: '緊急情況說明',
+      submit: '立即尋求協助'
+    },
     venues: { title: '全部場地', filter: '按類型篩選', all: '全部', price: '價格', rating: '評分', risk: '風險' },
     admin: { title: '管理後台', dashboard: '儀表板', venues: '管理店家', users: '用戶', receipts: '收據', approvals: '審核', editVenue: '編輯店家', addVenue: '新增店家', save: '儲存', cancel: '取消', approve: '通過', reject: '拒絕', totalUsers: '總用戶', totalVenues: '總店家', pendingReceipts: '待審核', approvedReceipts: '已通過', packages: '套餐', addPackage: '新增套餐', packageName: '套餐名稱', duration: '時間 (分鐘)', price: '價格 (THB)', description: '說明', notes: '管理員筆記', noPackages: '尚無套餐', noNotes: '尚無筆記', pin: '置頂', Pinned: '已置頂', unpin: '取消置頂' },
     footer: { privacy: '隱私', terms: '條款', contact: '聯絡', rights: '版權所有。' },
@@ -71,7 +89,16 @@ const translations = {
     dashboard: { title: 'インテリジェンスダッシュボード', priceIndex: 'バンコク会場価格ランキング', updated: '更新：リアルタイム', trustProtocol: 'トラストプロトコル状態', venueVerify: '会場検証', priceSync: '価格指数同期', fieldAgent: 'フィールドエージェントネットワーク', emergency: '72時間ヘルスコンシェルジュ', emergencyDesc: '緊急医療支援、病院ナビゲーション、緊急翻訳サービス。', activate: '緊急プロトコル起動', viewAll: '全会場を見る', yourCredits: 'あなたのクレジット', decoration: '内装', friendliness: '雰囲気づ', packages: 'パッケージ' },
     gacha: { title: 'シャムカジノ', subtitle: '支払い証明をアップロード → クレジットGET → ガチャを回す', spin: '回す', spinning: '回転中...', rewardPool: '報酬プール', uploadProof: '支払い証明をアップロード', uploadSuccess: 'アップロード成功！承認待ち。', selectVenue: '会場を選択', enterAmount: '金額 (THB)', paymentType: '支払い方法', receipt: 'レシート', transfer: '振込', card: 'カード', pendingApproval: '承認待ち', approved: '承認済み', rejected: '否決', mySubmissions: 'マイ 提出', noSubmissions: 'まだ提出なし', uploadImage: '画像をアップロード', selected: '選択済み' },
     membership: { title: 'メンバーシップティア', subtitle: 'インテリジェンスレベルを選択', popular: '人気', getStarted: '始める', current: '現在のプラン', selectTier: 'プランを選択', features: '機能', contactUs: 'お問い合わせで購入' },
-    emergency: { title: '緊急リクエスト', success: 'リクエスト送信完了！まもなくご連絡します。' },
+    emergency: { 
+      title: '緊急リクエスト', 
+      success: 'リクエスト送信完了！まもなくご連絡します。',
+      fillInfo: '以下の情報をご入力ください',
+      name: 'お名前',
+      phone: '電話番号',
+      location: '現在地',
+      description: '緊急状況の詳細',
+      submit: '支援を求める'
+    },
     venues: { title: '全会場', filter: 'カテゴリでフィルター', all: 'すべて', price: '価格', rating: '評価', risk: 'リスク' },
     admin: { title: '管理パネル', dashboard: 'ダッシュボード', venues: '会場管理', users: 'ユーザー', receipts: 'レシート', approvals: '承認', editVenue: '会場を編集', addVenue: '会場を追加', save: '保存', cancel: 'キャンセル', approve: '承認', reject: '否決', totalUsers: '総ユーザー', totalVenues: '総会場', pendingReceipts: '承認待ち', approvedReceipts: '承認済み', packages: 'パッケージ', addPackage: 'パッケージを追加', packageName: 'パッケージ名', duration: '時間 (分)', price: '価格 (THB)', description: '説明', notes: '管理者メモ', noPackages: 'パッケージなし', noNotes: 'メモなし', pin: 'ピン留め', Pinned: 'ピン留め済み', unpin: 'ピン解除' },
     footer: { privacy: 'プライバシー', terms: '利用規約', contact: '連絡先', rights: '全著作権所有。' },
@@ -732,15 +759,15 @@ export default function SukhumvitInsider() {
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 via-orange-500 to-red-500" />
           {emergencySuccess ? <div className="text-center py-8"><div className="w-20 h-20 mx-auto mb-4 bg-green-500/20 rounded-full flex items-center justify-center"><CheckCircle className="w-12 h-12 text-green-500" /></div><p className="text-xl font-bold text-green-500 mb-2">{t.emergency.success}</p></div> : <>
             <h2 className="text-2xl font-bold mb-2 flex items-center space-x-3"><div className="w-10 h-10 bg-red-500/20 rounded-xl flex items-center justify-center"><Heart className="w-6 h-6 text-red-500" /></div><span>{t.emergency.title}</span></h2>
-            <p className="text-gray-400 text-sm mb-6">請填寫以下資訊，我們將儘速與您聯繫。</p>
+            <p className="text-gray-400 text-sm mb-6">{t.emergency.fillInfo}</p>
             <form onSubmit={handleEmergency} className="space-y-5">
               <div className="grid grid-cols-2 gap-4">
-                <div><label className="block text-sm text-gray-400 mb-2">您的姓名</label><input type="text" placeholder="姓名" className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none" required /></div>
-                <div><label className="block text-sm text-gray-400 mb-2">聯絡電話</label><input type="tel" placeholder="+66 xxx xxx xxxx" className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none" required /></div>
+                <div><label className="block text-sm text-gray-400 mb-2">{t.emergency.name}</label><input type="text" placeholder={t.emergency.name} className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none" required /></div>
+                <div><label className="block text-sm text-gray-400 mb-2">{t.emergency.phone}</label><input type="tel" placeholder="+66 xxx xxx xxxx" className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none" required /></div>
               </div>
-              <div><label className="block text-sm text-gray-400 mb-2">所在位置</label><input type="text" value={emergencyForm.location} onChange={e => setEmergencyForm({...emergencyForm, location: e.target.value})} placeholder="餐廳名稱或地址" className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none" required /></div>
-              <div><label className="block text-sm text-gray-400 mb-2">緊急情況說明</label><textarea value={emergencyForm.description} onChange={e => setEmergencyForm({...emergencyForm, description: e.target.value})} placeholder="請描述您的緊急情況..." className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none h-28 resize-none" required /></div>
-              <button type="submit" className="w-full py-4 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 rounded-xl font-bold transition-all shadow-lg shadow-red-500/25">立即尋求協助</button>
+              <div><label className="block text-sm text-gray-400 mb-2">{t.emergency.location}</label><input type="text" value={emergencyForm.location} onChange={e => setEmergencyForm({...emergencyForm, location: e.target.value})} placeholder={t.emergency.location} className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none" required /></div>
+              <div><label className="block text-sm text-gray-400 mb-2">{t.emergency.description}</label><textarea value={emergencyForm.description} onChange={e => setEmergencyForm({...emergencyForm, description: e.target.value})} placeholder={t.emergency.description} className="w-full p-3.5 bg-[#0a0a0a] rounded-xl border border-gray-700 focus:border-red-500 outline-none h-28 resize-none" required /></div>
+              <button type="submit" className="w-full py-4 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 rounded-xl font-bold transition-all shadow-lg shadow-red-500/25">{t.emergency.submit}</button>
             </form>
           </>}
           <button onClick={() => setShowEmergency(false)} className="absolute top-4 right-4 text-gray-500 hover:text-white p-2"><X className="w-5 h-5" /></button>
