@@ -10,6 +10,7 @@ import { supabase } from './supabase';
 import { useAuth } from './hooks/useAuth';
 import { useVenues } from './hooks/useVenues';
 import { useGacha, gachaRewards } from './hooks/useGacha';
+import { useStats } from './hooks/useStats';
 import { AuthModal } from './components/common/AuthModal';
 import { PREFERENCE_LABELS, DECORATION_LEVELS, FRIENDLINESS_LEVELS } from './constants/preferences';
 
@@ -119,6 +120,9 @@ export default function SukhumvitInsider() {
     updateCredits,
     lang 
   });
+  
+  // Use Stats hook for dynamic hero statistics
+  const { verifiedMembers, totalVenues, satisfactionRate, loading: statsLoading } = useStats();
   
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [venues, setVenues] = useState([]);
@@ -589,15 +593,15 @@ export default function SukhumvitInsider() {
           {/* Stats */}
           <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-800/50 max-w-xl mx-auto">
             <div className="text-center">
-              <div className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">2,000+</div>
+              <div className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">{verifiedMembers}+</div>
               <div className="text-sm text-gray-500 mt-2">{t.hero.verified}</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">500+</div>
+              <div className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">{totalVenues}+</div>
               <div className="text-sm text-gray-500 mt-2">{t.hero.reports}</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">99.7%</div>
+              <div className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">{satisfactionRate}%</div>
               <div className="text-sm text-gray-500 mt-2">{t.hero.satisfaction}</div>
             </div>
           </div>
